@@ -1,0 +1,207 @@
+# Copyright (C) 2024 Stoil Yankov
+# This file is distributed under the same license as the Filtry plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Filtry 0.1"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/filtry"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>"
+"Language-Team: LANGUAGE <LL@li.org>"
+"MIME-Version: 1.0"
+"Content-Type: text/plain; charset=UTF-8"
+"Content-Transfer-Encoding: 8bit"
+"POT-Creation-Date: 2024-01-20T13:58:40+00:00"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE"
+"X-Generator: WP-CLI 2.9.0"
+"X-Domain: filtry"
+
+#. Plugin Name of the plugin
+msgid "Filtry"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://filtry.stoilyankov.com/"
+msgstr ""
+
+#. Description of the plugin
+msgid "WooCommerce Product Filters"
+msgstr ""
+
+#. Author of the plugin
+msgid "Stoil Yankov"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://stoilyankov.com"
+msgstr ""
+
+#: src/templates/filters.php:14
+msgid "Reset"
+msgstr ""
+
+#: src/templates/load-more-button.php:2
+msgid "Show more"
+msgstr ""
+
+#: src/templates/submit-button.php:2
+msgid "Submit"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "Enabled"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "Filter Name"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "How the filter name will be displayed on the website"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "View Type"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "How the filter will be displayed on the website"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "Radio"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "Checkbox"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "Collapsable"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "Enable the category box to be collapsable"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "Logic"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "AND"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "OR"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "Sort"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "How to sort the terms inside of filter block"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "Count"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "Title"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "ID"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "Sort Order"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "Order of sorting (ASC or DESC)"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "ASC"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11318
+msgid "DESC"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11329
+msgid "Filtry Settings"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11351
+msgid "Filters"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11351
+msgid "Settings"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Show terms count"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Show the count of products in a category"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Dynamic recount"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Count the numbers of products in a category depending on the currently selected filters"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Hide Empty"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Hide categories with 0 products"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Selected First"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Show selected filters on top"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Autosubmit"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Apply a filter immediatelly after it's toggled on or off"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "AJAX Reload"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Apply filters without refreshing the page"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Infinity loading"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Load products at the bottom of the list instead of going to a next page. Removes the pagination and adds a button to load more products at the end of the list."
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Loader animation"
+msgstr ""
+
+#: src/assets/dist/settings/base.js:11373
+msgid "Add loader animation while the next page of products is loading in AJAX mode"
+msgstr ""
