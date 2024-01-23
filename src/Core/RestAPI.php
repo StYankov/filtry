@@ -13,8 +13,7 @@ class RestAPI {
         register_rest_route( 'filtry/v1', 'shop', [
             'methods'             => \WP_REST_Server::READABLE,
             'callback'            => [$this, 'get_items'],
-            'permission_callback' => '__return_true'
-            // 'permission_callback' => [$this, 'verify_nonce'] 
+            'permission_callback' => [$this, 'verify_nonce'] 
         ] );
     }
 
