@@ -5,8 +5,9 @@ import { getActiveFilters, createQueryString } from '../utils/filters';
 
 /**
  * @param {string} queryString
+ * @param {function|null} cb
  */
-export function handleAjaxReload(queryString) {
+export function handleAjaxReload(queryString, cb = null) {
     const settings = getSettings();
     const $productsList = jQuery('ul.products');
 
@@ -32,6 +33,10 @@ export function handleAjaxReload(queryString) {
             jQuery('.woocommerce-pagination').replaceWith(res.pagination);
 
             toggleLoader(false);
+
+            if(typeof cb === 'function') {
+                cb(res);
+            }
         },
         error: function() {
             toggleLoader(false);
