@@ -1,7 +1,4 @@
 import { createQueryString, getActiveFilters } from '../utils/filters';
-import { pushRoute } from '../utils/router';
-import { toggleLoader } from '../utils/loader';
-import { getSettings } from '../utils/settings';
 import { getShop } from '../utils/ajax';
 
 export function initInfinityLoad() {
@@ -27,11 +24,11 @@ function onNextPage() {
  */
 export function handleInfinityLoad(queryString) {
     getShop(queryString, (res) => {
-        if(res.current_page >= res.max_page) {
-            const $productsList = jQuery('ul.products');
+        const $productsList = jQuery('ul.products');
+        $productsList.append(res.products);
 
-            jQuery('.filtry-lazy-load').remove();
-            $productsList.append(res.products);
+        if(res.current_page >= res.max_page) {
+            jQuery('.filtry-lazy-load').hide();
         } 
     });
 }

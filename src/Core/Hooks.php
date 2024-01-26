@@ -13,7 +13,6 @@ class Hooks {
 
         add_action( 'init', [ $this, 'schedule_count_matrix_update' ] );
         
-
         add_filter( 'rewrite_rules_array', [ $this, 'disable_pretty_pagination' ] );
 
         add_action( 'filtry_update_count_matrix', [ Counter::class, 'update_count_matrix' ] );

@@ -1,5 +1,15 @@
+.filtry__button {
+    border-radius: rem-calc(4);
+    padding: rem-calc(7) rem-calc(15);
+    font-weight: 600;
+}
+
 .filtry {
     margin-bottom: rem(16);
+}
+
+button.filtry__reset {
+    margin-bottom: rem(12);
 }
 
 .filtry__head {
