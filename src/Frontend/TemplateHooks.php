@@ -3,6 +3,7 @@
 namespace Filtry\Frontend;
 
 use Filtry\Admin\Settings;
+use Filtry\Core\Filters;
 use Filtry\Enums\SettingsEnum;
 use Filtry\Utils\Template;
 
@@ -16,10 +17,10 @@ class TemplateHooks {
 
     /**
      * Render reset button if there are any activeted filters
-     * 
-     * @var \Filtry\Dto\FiltersCollection $active_filters
      */
-    public function render_reset_button( $active_filters ) {
+    public function render_reset_button() {
+        $active_filters = Filters::get_activated_filters();
+
         if( $active_filters->count() === 0 ) {
             return;
         }

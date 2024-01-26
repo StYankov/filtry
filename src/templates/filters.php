@@ -7,7 +7,7 @@ use Filtry\Enums\ViewEnum;
 use Filtry\Utils\Template;
 ?>
 <div class="filtry__filters">
-    <?php do_action( 'filtry_pre_filters', $active_filters, $filters ); ?>
+    <?php do_action( 'filtry_pre_filters', $filters ); ?>
 
     <?php foreach( $filters as $filter ) : ?>
         <?php
