@@ -68,6 +68,13 @@ export default function Settings() {
                     />
                 </>
             ) }
+
+            <ToggleControl
+                label={ __('Mobile Filters', 'filtry') }
+                onChange={ value => setSettings({ mobile_filters: value }) }
+                help={ __('Move the filtrers on mobile to a fullscreen popup and add a floating button to open and close the popup', 'filtry') }
+                checked={ settings.mobile_filters }
+            />
         </>
     );
 }

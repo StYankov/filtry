@@ -7,7 +7,7 @@
      */
 ?>
 <input 
-    class="filtry-checkbox"
+    class="filtry__checkbox"
     type="checkbox" 
     name="<?php echo $name; ?>[]" 
     value="<?php echo $value ?>" 

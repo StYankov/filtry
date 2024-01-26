@@ -1,3 +1,3 @@
-<button type="button" class="button filtry-submit">
-    <?php _e( 'Submit', 'filtry' ); ?>
+<button type="button" class="button filtry__submit">
+    <?php _e( 'Apply', 'filtry' ); ?>
 </button>

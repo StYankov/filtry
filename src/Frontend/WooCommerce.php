@@ -14,6 +14,7 @@ class WooCommerce {
     
     public function add_hooks() {
         add_action( 'woocommerce_after_shop_loop', [ $this, 'render_loader' ] );
+        add_action( 'woocommerce_after_shop_loop', [ $this, 'render_popup_toggle' ] );
     }
 
     public function remove_hooks() {
@@ -28,6 +29,21 @@ class WooCommerce {
     }
 
     public function render_load_more_button() {
+        global $wp_query;
+
+        /**
+         * Don't show the load more button if there is only 1 page...
+         */
+        if( $wp_query->max_num_pages <= 1 ) {
+            return;
+        }
+
         Template::render( 'load-more-button.php' );
+    }
+
+    public function render_popup_toggle() {
+        if( boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS, true ) ) === true ) {
+            Template::render( 'popup-toggle.php' );
+        }
     }
 }

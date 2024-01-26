@@ -12,6 +12,7 @@ class Bootstrap {
     public function init() {
         new Query();
         new RestAPI();
+        new Hooks();
     }
 
     public function register_widget() {

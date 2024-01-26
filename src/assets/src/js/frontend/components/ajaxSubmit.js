@@ -1,47 +1,24 @@
-import { getSettings } from '../utils/settings';
-import { toggleLoader } from '../utils/loader';
-import { pushRoute } from '../utils/router';
 import { getActiveFilters, createQueryString } from '../utils/filters';
+import { getShop } from '../utils/ajax';
 
 /**
  * @param {string} queryString
  * @param {function|null} cb
  */
-export function handleAjaxReload(queryString, cb = null) {
-    const settings = getSettings();
-    const $productsList = jQuery('ul.products');
+export function handleAjaxReload(queryString) {
+    getShop(queryString, (res => {
+        const $productsList = jQuery('ul.products');
 
-    if($productsList.length === 0) {
-        console.error('Filtry: Could not find store products container');
-        return;
-    }
-
-    toggleLoader(true);
-
-    pushRoute(queryString);
-    
-    jQuery.ajax({
-        url: `${settings.rest_url}?${queryString}`,
-        method: 'GET',
-        headers: {
-            'X-WP-Nonce': settings.rest_nonce
-        },
-        success: function(res) {
-            jQuery('.filtry').replaceWith(res.filters);
-            $productsList.html(res.products);
-            jQuery('.woocommerce-result-count').replaceWith(res.result_count);
-            jQuery('.woocommerce-pagination').replaceWith(res.pagination);
-
-            toggleLoader(false);
-
-            if(typeof cb === 'function') {
-                cb(res);
-            }
-        },
-        error: function() {
-            toggleLoader(false);
+        $productsList.html(res.products);
+        jQuery('.woocommerce-result-count').replaceWith(res.result_count);
+        jQuery('.woocommerce-pagination').replaceWith(res.pagination);
+        
+        if(res.max_page === 1) {
+            jQuery('.filtry-infinity-load').hide();
+        } else {
+            jQuery('.filtry-infinity-load').show();
         }
-    });
+    }));
 }
 
 export function initAjaxReload() {

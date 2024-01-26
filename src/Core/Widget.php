@@ -3,7 +3,7 @@
 namespace Filtry\Core;
 
 use Filtry\Filtry;
-use Filtry\Frontend\View;
+use Filtry\Utils\View;
 
 class Widget extends \WP_Widget {
     public function __construct() {
@@ -20,16 +20,12 @@ class Widget extends \WP_Widget {
      * Widget front end
      */
     public function widget( $args, $instance ) {
-        $title = apply_filters( 'widget_title', $instance['title'] );
+        $args['title'] = apply_filters( 'widget_title', $instance['title'] );
 
         echo $args['before_widget'];
 
-        if( ! empty( $title ) ) {
-            echo $args['before_title'] . $title . $args['after_title'];
-        }
-
         // Render frontend
-        View::display_filters();
+        View::render_widget( $args );
 
         echo $args['after_widget'];
     }

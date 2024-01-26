@@ -7,9 +7,9 @@
      */
 ?>
 <input 
-    class="filtry-radio"
+    class="filtry__radio"
     type="radio" 
-    name="<?php echo $name; ?>[]" 
+    name="<?php echo $name; ?>" 
     value="<?php echo $value ?>" 
     data-taxonomy="<?php echo $filter->slug; ?>"
     <?php checked( true, in_array( $value, $filter->active_terms ) ) ?>

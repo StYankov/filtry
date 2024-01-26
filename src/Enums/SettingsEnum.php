@@ -13,6 +13,5 @@ enum SettingsEnum: string {
     case AJAX_RELOAD     = 'ajax_reload';
     case INFINITY_LOAD    = 'infinity_load';
     case ENABLE_LOADER   = 'enable_loader';
-    // To implement
     case MOBILE_FILTERS  = 'mobile_filters';
 }

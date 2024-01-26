@@ -6,7 +6,8 @@ type Settings = {
     autosubmit: boolean,
     ajax_reload: boolean,
     infinity_load: boolean,
-    enable_loader: boolean
+    enable_loader: boolean,
+    mobile_filters: boolean
 }
 
 export default Settings;

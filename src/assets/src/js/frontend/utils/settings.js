@@ -3,6 +3,7 @@
  * @property {boolean} autosubmit
  * @property {boolean} ajax
  * @property {boolean} infinity_load
+ * @property {boolean} mobile_filters
  * @property {string} rest_nonce
  * @property {string} rest_url
  * 

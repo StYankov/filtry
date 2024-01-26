@@ -16,7 +16,8 @@ const useSettingsStore = create<SettingsStore>()(devtools(
             autosubmit: window.filtersSettings.autosubmit,
             ajax_reload: window.filtersSettings.ajax_reload,
             infinity_load: window.filtersSettings.infinity_load,
-            enable_loader: window.filtersSettings.enable_loader
+            enable_loader: window.filtersSettings.enable_loader,
+            mobile_filters: window.filtersSettings.mobile_filters
         },
         updateFilter: (id, newValues) => {
             if(!get().filters[id]) {
@@ -49,7 +50,8 @@ const useSettingsStore = create<SettingsStore>()(devtools(
                 'filtry_autosubmit': state.settings.autosubmit,
                 'filtry_ajax_reload': state.settings.ajax_reload,
                 'filtry_infinity_load': state.settings.infinity_load,
-                'filtry_enable_laoder': state.settings.enable_loader
+                'filtry_enable_laoder': state.settings.enable_loader,
+                'filtry_mobile_filters': state.settings.mobile_filters
             });
 
             await settings.save();
@@ -57,6 +59,8 @@ const useSettingsStore = create<SettingsStore>()(devtools(
             await dispatch( noticesStore ).createSuccessNotice( 'Success!', {
                 type: 'snackbar'
             } );
+
+            document.body.scrollIntoView({ behavior: 'smooth' });
         }
     }),
     { trace: true }

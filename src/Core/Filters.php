@@ -13,6 +13,7 @@ use Filtry\Enums\SettingsEnum;
 use Filtry\Enums\SortEnum;
 use Filtry\Enums\TypeEnum;
 use Filtry\Enums\ViewEnum;
+use Filtry\Utils\Counter;
 
 class Filters {
     private static $filters = NULL;
@@ -22,8 +23,7 @@ class Filters {
     private static $active_filters = NULL;
 
     /**
-     * Merge default filters with saved filters from the database
-     * sorted by order
+     * Get filters from db and convert them to PHP collection
      * 
      * @return FiltersCollection
      */
@@ -34,22 +34,7 @@ class Filters {
 
         $filters = Settings::get_option( SettingsEnum::FILTERS, [] );
 
-        if( empty( $filters ) ) {
-            $filters = [];
-        }
-
         $filters = FiltersCollection::fromArray( $filters );
-
-        /**
-         * Merge default filters and saved ones.
-         * @var Filter $filter
-         */
-        foreach( self::get_default_filters() as $id => $filter ) {
-            if( empty( $filters[ $id ] ) ) {
-                $filters[ $id ] = $filter;
-                continue;
-            }
-        }
 
         $filters->uasort( fn( $a, $b ) => $a['order'] - $b['order'] );
 
@@ -133,6 +118,11 @@ class Filters {
 
         foreach( $filters as $filter ) {
             $filter->terms = self::get_terms_for_filter( $filter );
+
+            // Hide filters with 0 terms
+            if( $filter->terms->count() === 0 ) {
+                $filter->enabled = false;
+            }
         }
 
         return $filters;
@@ -180,6 +170,7 @@ class Filters {
 
         $collection->uasort( function( $a, $b ) use ( $filter ) {
             $cmp = 0;
+
             if( $filter->sort === SortEnum::ID ) {
                 $cmp = $a->term_id - $b->term_id;
             } else if( $filter->sort === SortEnum::COUNT ) {

@@ -4,14 +4,14 @@
  * @return {ActiveFilters}
  */
 export function getActiveFilters() {
-    const $filters = jQuery('.filtry__container');
+    const $filters = jQuery('.filtry__filter');
 
     const currentQuery = new URLSearchParams(window.location.search);
 
     const activeFilters = {};
 
     $filters.each((i, el) => {
-        if(el.classList.contains('filtry--checkbox') || el.classList.contains('filtry--radio')) {
+        if(el.classList.contains('filtry__filter--checkbox') || el.classList.contains('filtry__filter--radio')) {
             const $checkedInputs = jQuery(el).find('input:checked');
 
             $checkedInputs.each((j, input) => {

@@ -49,14 +49,3 @@ final class Filtry {
         return plugins_url( '/' . untrailingslashit( $path ) , FILTRY_PLUGIN_FILE );
     }
 }
-
-function disable_pretty_pagination( $rules ) {
-	foreach ( $rules as $rule => $rewrite ) {
-		if ( strpos( $rewrite, 'paged=' ) ) {
-			unset( $rules[ $rule ] );
-		}
-	}
-
-	return $rules;
-}
-add_filter( 'rewrite_rules_array', 'disable_pretty_pagination' );

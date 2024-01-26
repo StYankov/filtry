@@ -34,6 +34,7 @@ class Enqueue {
             'autosubmit'     => boolval( Settings::get_option( SettingsEnum::AUTOSUBMIT ) ),
             'ajax'           => boolval( Settings::get_option( SettingsEnum::AJAX_RELOAD ) ),
             'infinity_load'  => boolval( Settings::get_option( SettingsEnum::INFINITY_LOAD ) ),
+            'mobile_filters' => boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS ) ),
             'rest_nonce'     => wp_create_nonce( 'wp_rest' ),
             'rest_url'       => rest_url( 'filtry/v1/shop' )
         ];

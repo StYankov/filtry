@@ -10,8 +10,9 @@ type Props = {
     id: string
 }
 
-export default function Filters({ filter, id }: Props) {
+export default function FilterComponent({ filter, id }: Props) {
     const updateFilter = useSettingsStore(state => state.updateFilter);
+
     const {
         attributes,
         listeners,

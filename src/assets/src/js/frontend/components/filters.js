@@ -4,10 +4,15 @@ import { handleAjaxReload, initAjaxReload } from './ajaxSubmit';
 import { initInfinityLoad } from './infinityLoad';
 
 export function initFilters() {
-    jQuery(document.body).on('change', '.filtry-toggleable input', filterProducts);
-    jQuery(document.body).on('click', '.filtry-reset', resetFilters);
-    jQuery(document.body).on('click', '.filtry-submit', filterProducts);
-    jQuery(document.body).on('click', '.filtry--collapsable .filtry__head', collapseToggle);
+    jQuery(document.body).on('change', '.filtry__toggleable input', onFilterChange);
+    jQuery(document.body).on('click', '.filtry__reset', resetFilters);
+    jQuery(document.body).on('click', '.filtry__submit', applyFilters);
+    jQuery(document.body).on('click', '.filtry__filter--collapsable .filtry__filter-head', collapseToggle);
+    jQuery(document.body).on('click', '.filtry__popup-close', popupFiltersToggle);
+    jQuery(document.body).on('click', '.filtry__popup-toggle', popupFiltersToggle);
+    jQuery(document.body).on('click', '.filtry__popup-back', popupFiltersToggle);
+    jQuery(document.body).on('click', '.filtry__mobile-reset', resetFilters);
+    jQuery(document.body).on('click', '.filtry__mobile-apply', applyFilters);
 
     if(getSettings().ajax === true) {
         initAjaxReload();
@@ -18,10 +23,9 @@ export function initFilters() {
     }
 }
 
-function filterProducts() {
-    if(!getSettings().autosubmit) {
-        return;
-    }
+function applyFilters() {
+    // Disable popup in case it's enabled
+    document.body.classList.remove('filtry--show-popup');
 
     const activefilters = getActiveFilters();
 
@@ -38,6 +42,21 @@ function filterProducts() {
     }
 }
 
+function onFilterChange() {
+    if(getSettings().autosubmit === false) {
+        return;
+    }
+
+    /**
+     * Autosubmit is always disabled for the mobile menu
+     */
+    if(768 > window.innerWidth && getSettings().mobile_filters === true) {
+        return;
+    }
+
+    applyFilters();
+}
+
 function resetFilters() {
     const noQueryUrl = window.location.href.split('?')[0];
 
@@ -45,8 +64,12 @@ function resetFilters() {
 }
 
 function collapseToggle() {
-    jQuery(this).closest('.filtry--collapsable')
-        .toggleClass('filtry--hidden')
+    jQuery(this).closest('.filtry__filter')
+        .toggleClass('filtry__filter--hidden')
         .find('.filtry__list')
         .slideToggle();
+}
+
+function popupFiltersToggle() {
+    document.body.classList.toggle('filtry--show-popup');
 }

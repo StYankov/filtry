@@ -63,6 +63,11 @@ class Settings {
                 'id'           => SettingsEnum::ENABLE_LOADER->value,
                 'default'      => true,
                 'type'         => 'boolean'
+            ],
+            [
+                'id'           => SettingsEnum::MOBILE_FILTERS->value,
+                'default'      => true,
+                'type'         => 'boolean'
             ]
         ];
 

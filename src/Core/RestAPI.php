@@ -2,7 +2,7 @@
 
 namespace Filtry\Core;
 
-use Filtry\Frontend\View;
+use Filtry\Utils\View;
 
 class RestAPI {
     public function __construct() {

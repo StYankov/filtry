@@ -3,13 +3,13 @@
  * Plugin Name: Filtry
  * Plugin URI: https://filtry.stoilyankov.com/
  * Description: WooCommerce Product Filters
- * Version: 0.1
+ * Version: 0.2
  * Author: Stoil Yankov
  * Author URI: https://stoilyankov.com
  * Text Domain: filtry
  * Domain Path: /languages/
  * Requires at least: 6.2
- * Requires PHP: 7.4
+ * Requires PHP: 8.1
  *
  */
 

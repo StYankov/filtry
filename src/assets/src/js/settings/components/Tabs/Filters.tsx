@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   DndContext, 
   closestCenter,
@@ -58,9 +58,12 @@ export default function Filters() {
         obj[item.id].order = order++;
       }
 
-      console.log(obj);
       setFilters(obj);
     }
+
+    useEffect(() => {
+      setItems(Object.values(filters));
+    }, Object.values(filters));
 
     return (
       <DndContext 

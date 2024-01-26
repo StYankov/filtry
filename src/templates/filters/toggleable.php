@@ -10,7 +10,7 @@ use Filtry\Utils\Template;
 <div class="filtry__list">
     <?php foreach( $filter->terms as $term ) : ?>
         <?php if( $term->count === 0 ) { continue; } ?>
-        <label class="filtry-toggleable">
+        <label class="filtry__toggleable">
             <?php
                 Template::render( "fields/{$type}.php", [
                     'name'   => $term->name,
@@ -19,11 +19,12 @@ use Filtry\Utils\Template;
                     'term'   => $term
                 ] );
             ?>
-
-            <?php echo $term->name; ?>
+            <span class="filter__term-name">
+                <?php echo $term->name; ?>
+            </span>
 
             <?php if( ! $term->is_selected ) : ?>
-                <span class="filtry-count"><?php echo $term->count; ?></span>
+                <span class="filtry__term-count"><?php echo $term->count; ?></span>
             <?php endif; ?>
         </label>
     <?php endforeach; ?>

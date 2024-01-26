@@ -1,0 +1,119 @@
+button.filtry__popup-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: rem(16);
+    left: rem(16);
+    width: rem(46);
+    height: rem(46);
+    background-color: var(--filtry-c-accent);
+    border-radius: 50%;
+    z-index: 1000;
+    cursor: pointer;
+
+    @media (min-width: 768px) {
+        display: none;
+    }
+}
+
+.filtry__popup-controls {
+    display: none;
+    align-items: center;
+    gap: rem(10);
+    padding: rem(6) 0;
+}
+
+button.filtry__popup-back {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--filtry-c-primary);
+    border: 1px solid var(--filtry-c-accent);
+    border-radius: rem(10);
+    height: rem(38);
+    width: rem(38);
+
+    &::after {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: rem(10);
+        height: rem(10);
+        border-bottom: 1px solid;
+        border-left: 1px solid;
+        transform: translate(-50%, -50%) rotate(45deg);
+        left: calc(50% + 3px);
+        top: 50%;
+    }
+}
+
+.filtry__button {
+    border-radius: rem(4);
+    padding: rem(7) rem(15);
+    font-weight: 600;
+}
+
+.filtry__mobile-reset {
+    background-color: #fff;
+    color: var(--filtry-c-accent);
+    border: 1px solid var(--filtry-c-accent);
+    background-color: var(--filtry-c-primary);
+    height: rem(36);
+    margin-left: auto;
+}
+
+.filtry__mobile-apply {
+    color: var(--filtry-c-primary);
+    background-color: var(--filtry-c-accent);
+    height: rem(36);
+}
+
+@media (max-width: 768px) {
+    .filtry.filtry--mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background-color: #fff;
+        padding: rem(15);
+        z-index: 2000;
+        overflow: hidden;
+        transform: translateX(-100%);
+        transition: 0.3s transform ease-out;
+
+        .filtry__popup-close {
+            display: block;
+        }
+
+        .filtry__popup-controls {
+            display: flex;
+        }
+    }
+
+    .filtry__head {
+        font-size: rem(24);
+    }
+
+    .filtry__filters {
+        overflow: auto;
+        height: calc(100vh - #{rem(120)});
+        height: calc(100dvh - #{rem(120)});
+    }
+
+    button.filtry__reset {
+        display: none;
+    }
+
+    body.filtry--show-popup {
+        overflow: hidden;
+
+        .filtry--mobile {
+            transform: translateX(0);
+        }
+    }
+}

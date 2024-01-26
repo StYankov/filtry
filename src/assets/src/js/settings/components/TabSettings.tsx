@@ -2,7 +2,6 @@ import { Panel, PanelBody, Button, TabPanel } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import Filters from './Tabs/Filters';
 import Settings from './Tabs/Settings';
-import Sortable from './Tabs/Sortable';
 import useSettingsStore from '../store/settingsStore';
 
 export default function () {
@@ -19,11 +18,7 @@ export default function () {
                     {
                         name: 'settings',
                         title: __( 'Settings', 'filtry' )
-                    },
-                    {
-                        name: 'sortable',
-                        title: __( 'Sortable', 'filtry' )
-                    },
+                    }
                 ] }
             >
                 { ( tab ) => (
@@ -50,8 +45,6 @@ function TabSwitcher(tabId: string) {
             return <Filters />
         case 'settings':
             return <Settings />
-        case 'sortable':
-            return <Sortable />
         default:
             return null;
     }
