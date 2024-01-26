@@ -56,7 +56,7 @@ class TermCollection extends ArrayObject {
 
     private function validate( mixed $value ): void {
         if( ! $value instanceof Term ) {
-            throw new InvalidArgumentException( __( 'Not an instance of a Term', Filtry::get_text_domain() ) );
+            throw new InvalidArgumentException( __( 'Not an instance of a Term', 'filtry' ) );
         }
     }
 }

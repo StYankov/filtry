@@ -116,7 +116,7 @@ class RestAPI {
      */
     private function get_products_per_page(): int {
         return absint(
-             apply_filters( 'loop_shop_per_page', wc_get_default_products_per_row() * wc_get_default_product_rows_per_page() )
+            apply_filters( 'loop_shop_per_page', wc_get_default_products_per_row() * wc_get_default_product_rows_per_page() )
         );
     }
 }

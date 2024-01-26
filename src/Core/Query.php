@@ -28,6 +28,11 @@ class Query {
                 $this->apply_price_filter( $query, $filter );
             }
         }
+
+        if( ( is_shop() || is_product_taxonomy() ) && isset( $_GET['paged'] ) ) {
+            $query->set( 'paged', 1 );
+            $query->set( 'posts_per_page', $query->get( 'posts_per_page' ) * absint( $_GET['paged'] ) );
+        }
     }
     
     /**

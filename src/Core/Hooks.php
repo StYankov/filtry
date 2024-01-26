@@ -11,11 +11,13 @@ class Hooks {
         /** Update Count Matrix when a term is deleted */
         add_action( 'delete_term', [ Counter::class, 'update_count_matrix' ] );
 
+        add_action( 'filtry_update_count_matrix', [ Counter::class, 'update_count_matrix' ] );
+
         add_action( 'init', [ $this, 'schedule_count_matrix_update' ] );
         
         add_filter( 'rewrite_rules_array', [ $this, 'disable_pretty_pagination' ] );
+        add_filter( 'redirect_canonical', [ $this, 'remove_page_number_permalink_redirect'] );
 
-        add_action( 'filtry_update_count_matrix', [ Counter::class, 'update_count_matrix' ] );
     }
 
     public function schedule_count_matrix_update() {
@@ -32,5 +34,25 @@ class Hooks {
         }
         
         return $rules;
+    }
+
+    /**
+     * Do not redirect to /page/{number} archive when there is a ?paged={number}
+     * query param
+     * 
+     * @param string $redirect_url
+     * 
+     * @return string|false
+     */
+    public function remove_page_number_permalink_redirect( $redirect_url ) {
+        if( false === ( is_shop() || is_product_taxonomy() ) ) {
+            return $redirect_url;
+        }
+
+        if( is_paged() && get_query_var( 'paged' ) > 0 ) {
+            return false;
+        }
+
+        return $redirect_url;
     }
 }

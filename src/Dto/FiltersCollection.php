@@ -97,7 +97,7 @@ class FiltersCollection extends ArrayObject {
 
     private function validate( mixed $value ): void {
         if( ! $value instanceof Filter ) {
-            throw new InvalidArgumentException( __( 'Not an instance of a filter', Filtry::get_text_domain() ) );
+            throw new InvalidArgumentException( __( 'Not an instance of a filter', 'filtry' ) );
         }
     }
 }

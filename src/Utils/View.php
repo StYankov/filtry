@@ -6,7 +6,6 @@ use Filtry\Admin\Settings;
 use Filtry\Core\Filters;
 use Filtry\Enums\SettingsEnum;
 use Filtry\Utils\Template;
-use Wowchers\Plugin;
 
 class View {
     public static function render_filters() {
@@ -24,7 +23,7 @@ class View {
 
     public static function render_widget( array $args ) {
         $data = wp_parse_args( $args, [
-            'title'         => __( 'Filters', Plugin::get_text_domain() ),
+            'title'         => __( 'Filters', 'filtry' ),
             'mobileFilters' => boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS, true ) )
         ] );
 

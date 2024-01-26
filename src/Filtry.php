@@ -3,7 +3,7 @@
 namespace Filtry;
 
 final class Filtry {
-	public string $version = '0.2.1';
+	public string $version = '0.3';
 
     /**
 	 * The single instance of the class.
@@ -29,12 +29,18 @@ final class Filtry {
 
 	private function __construct() {
 		$this->init();
+
+        add_action( 'plugins_loaded', [$this, 'load_plugin_textdomain'] );
 	}
 
 	public function init() {
 		new Admin\Bootstrap();
 		new Core\Bootstrap();
 		new Frontend\Bootstrap();
+	}
+
+	public function  load_plugin_textdomain() {
+        load_plugin_textdomain( self::get_text_domain(), false, basename( self::plugin_path() ) . '/languages' );
 	}
 
 	public static function get_text_domain() {

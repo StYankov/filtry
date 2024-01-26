@@ -17,5 +17,7 @@ class Install {
 		}
 
 		Counter::update_count_matrix();
+
+		flush_rewrite_rules();
 	}
 }

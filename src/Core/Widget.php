@@ -9,9 +9,10 @@ class Widget extends \WP_Widget {
     public function __construct() {
         parent::__construct(
             'filtry_widget',
-            __( 'Filtry WooCommerce Filters', Filtry::get_text_domain() ),
+            __( 'Filtry WooCommerce Filters', 'filtry' ),
             [
-                'description' => __( 'Products filters', Filtry::get_text_domain() )
+                'description'           => __( 'Products filters', 'filtry' ),
+                'show_instance_in_rest' => true
             ]
         );
     }
@@ -37,7 +38,7 @@ class Widget extends \WP_Widget {
         if ( isset( $instance[ 'title' ] ) ) {
            $title = $instance[ 'title' ];
         } else {
-            $title = __( 'Filters', Filtry::get_text_domain() );
+            $title = __( 'Filters', 'filtry' );
         }
         ?>
             <p>
