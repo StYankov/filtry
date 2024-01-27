@@ -7,6 +7,7 @@ use Filtry\Utils\View;
 class RestAPI {
     public function __construct() {
         add_action( 'rest_api_init', [ $this, 'register_routes' ] );
+        add_action( 'plugins_loaded', [ $this, 'include_wc_frontend' ] );
     }
 
     public function register_routes() {
@@ -15,6 +16,16 @@ class RestAPI {
             'callback'            => [$this, 'get_items'],
             'permission_callback' => [$this, 'verify_nonce'] 
         ] );
+    }
+
+    /**
+     * Load WooCommerce frontend includes
+     * before loading the theme if the request is for REST API
+     */
+    public function include_wc_frontend() {
+        if( WC()->is_rest_api_request() && strpos( $_SERVER['REQUEST_URI'], 'filtry/v1/shop' ) !== false ) {
+            WC()->frontend_includes();
+        }
     }
 
     public function get_items( \WP_REST_Request $request ) {
