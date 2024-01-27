@@ -66,20 +66,17 @@ export default function Filters() {
     }, Object.values(filters));
 
     return (
-      <>
-        { Object.values(filters).map(filter => <Filter key={ filter.id } id={ filter.id } filter={ filter } />) }   
-      </>
-      // <DndContext 
-      //   sensors={sensors}
-      //   collisionDetection={closestCenter}
-      //   onDragEnd={handleDragEnd}
-      // >
-      //   <SortableContext 
-      //     items={ items }
-      //     strategy={verticalListSortingStrategy}
-      //   >
-      //     { items.map(filter => <Filter key={ filter.id } id={ filter.id } filter={ filter } />) }
-      //   </SortableContext>
-      // </DndContext>
+      <DndContext 
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext 
+          items={ items }
+          strategy={verticalListSortingStrategy}
+        >
+          { items.map(filter => <Filter key={ filter.id } id={ filter.id } filter={ filter } />) }
+        </SortableContext>
+      </DndContext>
     );
 }

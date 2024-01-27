@@ -33,7 +33,7 @@ button.filtry__popup-back {
     border: 1px solid var(--filtry-c-accent);
     border-radius: rem(10);
     height: rem(38);
-    width: rem(38);
+    width: rem(42);
 
     &::after {
         content: "";
@@ -63,6 +63,7 @@ button.filtry__popup-back {
     background-color: var(--filtry-c-primary);
     height: rem(36);
     margin-left: auto;
+    max-width: rem-calc(160);
 }
 
 .filtry__mobile-apply {

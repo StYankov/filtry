@@ -1,7 +1,9 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { useState } from '@wordpress/element';
 import { PanelRow, ToggleControl, SelectControl, TextControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
+import FilterDetails from './FilterDetails';
 import Filter from '../../types/Filter';
 import useSettingsStore from '../../store/settingsStore';
 
@@ -11,6 +13,7 @@ type Props = {
 }
 
 export default function FilterComponent({ filter, id }: Props) {
+    const [showDetails, setShowDetails] = useState(false);
     const updateFilter = useSettingsStore(state => state.updateFilter);
 
     const {
@@ -27,12 +30,28 @@ export default function FilterComponent({ filter, id }: Props) {
     };
 
     return (
-        <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-            <PanelRow className='flex-col items-start'>
+        <div ref={setNodeRef} style={style} {...attributes}>
+            <PanelRow className='flex-col items-start border-0 border-solid border-b border-b-slate-200 mb-3'>
                 <h3 className="text-underline">{ filter.label }</h3>
                 <div className='filter-controls flex gap-3'>
+                    <button 
+                        className='
+                            bg-transparent 
+                            border-0 
+                            cursor-pointer 
+                            h-10 
+                            min-w-[40px] 
+                            p-0
+                            mt-4
+                        '
+                        type='button' 
+                        {...listeners}
+                    >
+                        <span className="dashicons dashicons-move"></span>
+                    </button>
+
                     <ToggleControl
-                        className='self-center'
+                        className='mt-7'
                         label={ __( 'Enabled', 'filtry' ) }
                         checked={ filter.enabled }
                         onChange={ (enabled) => updateFilter(filter.id, { enabled }) }
@@ -44,57 +63,33 @@ export default function FilterComponent({ filter, id }: Props) {
                         value={ filter.label }
                         help={ __( 'How the filter name will be displayed on the website', 'filtry' )}
                     />
-                    <SelectControl
-                        label={ __( 'View Type', 'filtry' ) }
-                        help={ __( 'How the filter will be displayed on the website', 'filtry' ) }
-                        options={ [
-                            { label: __( 'Radio', 'filtry' ), value: 'radio' },
-                            { label: __( 'Checkbox', 'filtry' ), value: 'checkbox' }
-                        ] }
-                        value={ filter.view }
-                        onChange={ (value) => updateFilter(filter.id, { view: value }) }
-                    />
-                    <ToggleControl
-                        className='self-center'
-                        label={ __('Collapsable', 'filtry') }
-                        help={ __( 'Enable the category box to be collapsable', 'filtry' ) }
-                        checked={ filter.collapsable }
-                        onChange={ (value) => updateFilter(filter.id, { collapsable: value }) }
-                    />
+                    <div className='max-w-[180px]'>
+                        <SelectControl
+                            label={ __( 'View Type', 'filtry' ) }
+                            help={ __( 'How the filter will be displayed on the website', 'filtry' ) }
+                            options={ [
+                                { label: __( 'Radio', 'filtry' ), value: 'radio' },
+                                { label: __( 'Checkbox', 'filtry' ), value: 'checkbox' }
+                            ] }
+                            value={ filter.view }
+                            onChange={ (value) => updateFilter(filter.id, { view: value }) }
+                        />
+                    </div>
 
-                    <SelectControl
-                        label={ __( 'Logic', 'filtry' ) }
-                        help={ <LogicHelpText /> }
-                        options={ [
-                            { label: __( 'AND', 'filtry' ), value: 'and' },
-                            { label: __( 'OR', 'filtry' ), value: 'or' }
-                        ] }
-                        value={ filter.logic }
-                        onChange={ (value) => updateFilter(filter.id, { logic: value }) }
-                    />
-
-                    <SelectControl
-                        label={ __( 'Sort', 'filtry' ) }
-                        help={ __( 'How to sort the terms inside of filter block', 'filtry' ) } 
-                        options={ [
-                            { label: __( 'Count', 'filtry' ), value: 'count' },
-                            { label: __( 'Title', 'filtry' ), value: 'title' },
-                            { label: __( 'ID', 'filtry' ), value: 'id' },
-                        ] }
-                        value={ filter.sort }
-                        onChange={ (value) => updateFilter(filter.id, { sort: value }) }
-                    />
-
-                    <SelectControl
-                        label={ __( 'Sort Order', 'filtry' ) }
-                        help={ __( 'Order of sorting (ASC or DESC)', 'filtry' ) }
-                        options={ [
-                            { label: __( 'ASC', 'filtry' ), value: 'asc' },
-                            { label: __( 'DESC', 'filtry' ), value: 'desc' },
-                        ] }
-                        value={ filter.sortOrder }
-                        onChange={ (value) => updateFilter(filter.id, { sortOrder: value }) }
-                    />
+                    <button 
+                        className='bg-transparent border-0 h-10 cursor-pointer mt-5 transition'
+                        style={{ transform: showDetails ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                        type='button' 
+                        onClick={ () => setShowDetails(state => ! state) }
+                    >
+                        <span className="dashicons dashicons-arrow-down-alt2"></span>
+                    </button>
+                </div>
+                <div 
+                    className='overflow-hidden'
+                    style={{ transition: '0.3s max-height ease-out', maxHeight: showDetails ? 400 : 0 }}
+                >
+                    <FilterDetails filter={ filter } />
                 </div>
             </PanelRow>
         </div>
