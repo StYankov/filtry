@@ -11,6 +11,8 @@ use Filtry\Utils\Template;
 
     <?php foreach( $filters as $filter ) : ?>
         <?php
+            if( false === $filter->enabled ) { continue; }
+
             $classes = ['filtry__filter', 'filtry__filter-' . $filter->id, 'filtry__filter--' . $filter->view->value];
 
             if( $filter->collapsable ) {
