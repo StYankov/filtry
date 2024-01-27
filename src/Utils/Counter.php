@@ -26,8 +26,7 @@ class Counter {
             return $term->count;
         }
 
-        $filter_matrix = get_option( 'filtry_matrix_' . $term->taxonomy, [] );
-        $product_ids   = isset( $filter_matrix[ $term->term_id ] ) ? $filter_matrix[ $term->term_id ] : []; 
+        $product_ids = self::get_term_cache( $term ); 
 
         foreach( $filters as $filter ) {
             $filter_product_ids = [];
@@ -39,8 +38,7 @@ class Counter {
                     continue;
                 }
 
-                $filter_matrix = get_option( 'filtry_matrix_' . $t->taxonomy, [] );
-                $count_matrix  = isset( $filter_matrix[ $t->term_id ] ) ? $filter_matrix[ $t->term_id ] : []; 
+                $count_matrix  = self::get_term_cache( $t );
 
                 // Change condition here
                 if( $filter->logic === LogicEnum::OR ) {
@@ -75,9 +73,13 @@ class Counter {
             foreach( $terms as $term ) {
                 $filter_matrix[ $term->term_id ] = self::get_products_in_term( $term );
 
-                $key = 'filtry_matrix_' . $filter->id . '_' . $term->term_id;
+                /**
+                 *  Currently saving the cache per taxonomy not per term
+                 *  Might use it in the future and maybe for bigger stores
+                 */
+                // $key = 'filtry_matrix_' . $filter->id . '_' . $term->term_id;
                 
-                update_option( $key, $filter_matrix[ $term->term_id ], false );
+                // update_option( $key, $filter_matrix[ $term->term_id ], false );
             }
 
             update_option( 'filtry_matrix_' . $filter->id, $filter_matrix );
@@ -93,7 +95,7 @@ class Counter {
      * 
      * @return int[] Product ids
      */
-    private static function get_products_in_term( \WP_Term $term ) {
+    public static function get_products_in_term( \WP_Term $term ) {
         $query = new \WP_Query( [
             'post_type'      => 'product',
             'posts_per_page' => -1,
@@ -104,18 +106,30 @@ class Counter {
                 [
                     'taxonomy'  => 'product_visibility',
                     'terms'     => [ 'exclude-from-catalog' ],
-                    'field'     => 'name',
+                    'field'     => 'slug',
                     'operator'  => 'NOT IN',
                 ],
                 [
                     'taxonomy'  => $term->taxonomy,
                     'terms'     => [ $term->term_id ],
                     'field'     => 'term_id',
-                    'operator'  => 'IN'
+                    'operator'  => 'IN',
+                    'include_children' => false
                 ]
             ]
         ] );
 
         return $query->posts;
+    }
+
+    /**
+     * @param Term $term
+     * 
+     * @return int[] Product ids that are in the term
+     */
+    private static function get_term_cache( Term|\WP_Term $term ) {
+        $cache = get_option( 'filtry_matrix_' . $term->taxonomy, [] );
+
+        return isset( $cache[ $term->term_id ] ) ? $cache[ $term->term_id ] : [];
     }
 }
