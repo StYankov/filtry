@@ -129,8 +129,10 @@ class Filters {
     }
 
     private static function get_terms_for_filter( Filter $filter ): TermCollection {
+        $collection = new TermCollection();
+
         if( false === $filter->enabled ) {
-            return [];
+            return $collection;
         }
 
         $hide_empty      = Settings::get_option( SettingsEnum::HIDE_EMPTY, true );
@@ -142,7 +144,6 @@ class Filters {
             'hide_empty' => $hide_empty
         ] );
 
-        $collection = new TermCollection();
 
         foreach( $terms as $term ) {
             $t = new Term(
