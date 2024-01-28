@@ -23,7 +23,7 @@ class Filter implements \JsonSerializable, \IteratorAggregate, \ArrayAccess {
      * @param SortEnum $sort Which property should be used to sort the terms in the filter box
      * @param OrderEnum $sortOrder The order in which the terms should be sorted in the filter box (ASC or DESC)
      * @param bool $collapsable Whether the filter box can be collapsed or not. In collapsed state only the title is visible
-     * @param array $active_terms List of term slugs that are active for the current query. (The active filters)
+     * @param string[] $active_terms List of term slugs that are active for the current query. (The active filters)
      * @param TermCollection|null $terms The terms in the current filter 
      */
     public function __construct(

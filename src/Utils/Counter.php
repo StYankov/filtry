@@ -20,38 +20,53 @@ class Counter {
      * @return int
      */
     public static function get_term_count( Term $term, Filter $filter ): int {
-        $filters = Filters::get_activated_filters();
+        $active_filters = Filters::get_activated_filters();
 
-        if( empty( $filters ) ) {
+        if( $active_filters->count() === 0 ) {
             return $term->count;
         }
 
-        $product_ids = self::get_term_cache( $term ); 
+        $product_ids = self::get_term_cache( $term );
 
-        foreach( $filters as $filter ) {
-            $filter_product_ids = [];
+        /**
+         * Store available products per taxonomy
+         */
+        $taxonomy_products = [];
 
-            foreach( $filter->active_terms as $slug ) {
-                $t = get_term_by( 'slug', $slug, $filter->id );
+        // Add current taxonomy
+        $taxonomy_products[ $term->taxonomy ] = $product_ids;
+
+        foreach( $active_filters as $active_filter ) {
+            foreach( $active_filter->active_terms as $term_slug ) {
+
+                // Count is not shown on active terms
+                if( $term->slug === $term_slug ) {
+                    continue;
+                }
+
+                $t = get_term_by( 'slug', $term_slug, $active_filter->id );
 
                 if( empty( $t ) ) {
                     continue;
                 }
 
-                $count_matrix  = self::get_term_cache( $t );
+                $term_products = self::get_term_cache( $t );
 
-                // Change condition here
+                if( empty( $taxonomy_products[ $active_filter->id ] ) ) {
+                    $taxonomy_products[ $active_filter->id ] = $term_products;
+                    continue;
+                }
+
+                
                 if( $filter->logic === LogicEnum::OR ) {
-                    $filter_product_ids = array_merge( $filter_product_ids, $count_matrix );
+                    $taxonomy_products[ $active_filter->id ] = array_unique( array_merge( $taxonomy_products[ $active_filter->id ], $term_products ) );
                 } else {
-                    $filter_product_ids = array_intersect( $product_ids, $count_matrix );
+                    $taxonomy_products[ $active_filter->id ] = array_intersect( $taxonomy_products[ $active_filter->id ], $term_products );
                 }
             }
-
-            $product_ids = array_intersect( $product_ids, array_unique( $filter_product_ids ) );
         }
 
-        return count( $product_ids );
+        return count( array_intersect( ...array_values( $taxonomy_products ) ) );
     }
 
     /**
