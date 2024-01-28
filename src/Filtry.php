@@ -3,7 +3,7 @@
 namespace Filtry;
 
 final class Filtry {
-	public string $version = '0.5';
+	public string $version = '0.5.1';
 
     /**
 	 * The single instance of the class.

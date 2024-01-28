@@ -18,6 +18,8 @@ export function handleAjaxReload(queryString) {
         } else {
             jQuery('.filtry-infinity-load').show();
         }
+
+        window.scrollTo({ top: 100, behavior: 'smooth' });
     }));
 }
 
