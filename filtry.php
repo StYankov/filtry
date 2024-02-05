@@ -3,7 +3,7 @@
  * Plugin Name: Filtry
  * Plugin URI: https://filtry.stoilyankov.com/
  * Description: WooCommerce Product Filters
- * Version: 0.5.2
+ * Version: 0.5.3
  * Author: Stoil Yankov
  * Author URI: https://stoilyankov.com
  * Text Domain: filtry

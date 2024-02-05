@@ -32,7 +32,7 @@ class TemplateHooks {
      * Render popup controls if mobile menu is enabled
      */
     public function render_popup_controls() {
-        if( false === boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS, true ) ) ) {
+        if( false === boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS ) ) ) {
             return;
         }
 
@@ -40,7 +40,7 @@ class TemplateHooks {
     }
 
     public function render_submit_button() {
-        if( boolval( Settings::get_option( SettingsEnum::AUTOSUBMIT, true ) ) ) {
+        if( boolval( Settings::get_option( SettingsEnum::AUTOSUBMIT ) ) ) {
             return;
         }
 
