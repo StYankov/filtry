@@ -16,6 +16,12 @@ class Install {
 			);
 		}
 
+		foreach( filtry()->settings->get_settings() as $setting ) {
+			if( empty( Settings::get_option( $setting['id'] ) ) ) {
+				Settings::set_option( $setting['id'], $setting['default'] );
+			}
+		}
+
 		Counter::update_count_matrix();
 
 		flush_rewrite_rules();

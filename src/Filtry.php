@@ -2,16 +2,20 @@
 
 namespace Filtry;
 
+use Filtry\Admin\Settings;
+
 final class Filtry {
-	public string $version = '0.5.1';
+	public string $version = '0.5.2';
 
     /**
 	 * The single instance of the class.
 	 *
 	 * @var Filtry
 	 */
-	protected static $_instance = null;
+	private static $_instance = null;
 
+	public Settings $settings = null;
+	
     /**
 	 * Main Filtry Instance.
 	 *
@@ -34,17 +38,14 @@ final class Filtry {
 	}
 
 	public function init() {
-		new Admin\Bootstrap();
+		$this->settings = new Settings();
+		
 		new Core\Bootstrap();
 		new Frontend\Bootstrap();
 	}
 
 	public function  load_plugin_textdomain() {
-        load_plugin_textdomain( self::get_text_domain(), false, basename( self::plugin_path() ) . '/languages' );
-	}
-
-	public static function get_text_domain() {
-		return 'filtry';
+        load_plugin_textdomain( 'filtry', false, basename( self::plugin_path() ) . '/languages' );
 	}
 
 	public static function plugin_path() {

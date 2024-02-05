@@ -3,7 +3,7 @@
  * Plugin Name: Filtry
  * Plugin URI: https://filtry.stoilyankov.com/
  * Description: WooCommerce Product Filters
- * Version: 0.5.1
+ * Version: 0.5.2
  * Author: Stoil Yankov
  * Author URI: https://stoilyankov.com
  * Text Domain: filtry
@@ -19,6 +19,10 @@ define( 'FILTRY_PLUGIN_FILE', __FILE__ );
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-\Filtry\Filtry::instance();
+function filtry() {
+    return \Filtry\Filtry::instance();
+}
+
+$GLOBALS['filtry'] = filtry();
 
 register_activation_hook( __FILE__, [\Filtry\Install::class, 'install'] );

@@ -93,8 +93,8 @@ class Settings {
     public function settings_page() {
         add_submenu_page(
             'woocommerce',
-            __( 'Filtry', Filtry::get_text_domain() ),
-            __( 'Filtry', Filtry::get_text_domain() ),
+            __( 'Filtry', 'filtry' ),
+            __( 'Filtry', 'filtry' ),
             'manage_woocommerce',
             'filtry-settings',
             [ $this, 'render_settings_page' ]
@@ -126,5 +126,9 @@ class Settings {
         }
 
         return update_option( self::SETTINGS_PREFIX . '_' . $key, $value, $autoload );
+    }
+
+    public function get_settings(): array {
+        return $this->settings;
     }
 }
