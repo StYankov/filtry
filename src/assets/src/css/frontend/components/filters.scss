@@ -141,3 +141,26 @@ button.filtry__filter-collapse .chevron::before {
     margin-left: auto;
     font-size: rem(13);
 }
+
+.filtry__filter--sort {
+    display: none;
+    
+    .filtry__filter-head {
+        margin-bottom: 0;
+        border-bottom: 0;
+    }
+
+    .filtry__sort {
+        padding-bottom: rem-calc(14);
+    }
+
+    .woocommerce-ordering {
+        float: none;
+        display: flex;
+        margin-bottom: 0;
+    }
+
+    .woocommerce-ordering__label {
+        display: none;
+    }
+}

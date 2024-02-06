@@ -9,10 +9,22 @@ use Filtry\Utils\Template;
 
 class TemplateHooks {
     public function __construct() {
+        add_action( 'filtry_pre_filters', [ $this, 'render_sort_filter' ] );
         add_action( 'filtry_after_filters', [ $this, 'render_submit_button' ] );
         add_action( 'filtry_after_filters', [ $this, 'render_reset_button' ], 20 );
         
         add_action( 'filtry_widget_footer', [ $this, 'render_popup_controls' ] );
+    }
+
+    /**
+     * Render sort options in mobile menu
+     */
+    public function render_sort_filter() {
+        if( false === boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS ) ) ) {
+            return;
+        }
+
+        Template::render( 'filters/sort-options.php' );
     }
 
     /**

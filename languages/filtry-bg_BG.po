@@ -14,6 +14,8 @@ msgstr ""
 "X-Domain: filtry\n"
 
 #. Plugin Name of the plugin
+#: src/Admin/Settings.php:96
+#: src/Admin/Settings.php:97
 msgid "Filtry"
 msgstr ""
 
@@ -23,11 +25,11 @@ msgstr ""
 
 #. Description of the plugin
 msgid "WooCommerce Product Filters"
-msgstr ""
+msgstr "WooCommerce Product Filters"
 
 #. Author of the plugin
 msgid "Stoil Yankov"
-msgstr ""
+msgstr "Stoil Yankov"
 
 #. Author URI of the plugin
 msgid "https://stoilyankov.com"
@@ -40,7 +42,7 @@ msgstr "покажи още"
 #: src/templates/popup-controls.php:5
 #: src/templates/reset-button.php:1
 msgid "Reset"
-msgstr "Изчисти филтри"
+msgstr "Изчисти"
 
 #: src/templates/popup-controls.php:9
 #: src/templates/submit-button.php:2
@@ -99,9 +101,10 @@ msgstr ""
 msgid "OR"
 msgstr ""
 
+#: src/templates/filters/sort-options.php:4
 #: src/assets/dist/settings/base.js:9
 msgid "Sort"
-msgstr ""
+msgstr "Сортиране"
 
 #: src/assets/dist/settings/base.js:9
 msgid "How to sort the terms inside of filter block"
@@ -109,15 +112,15 @@ msgstr ""
 
 #: src/assets/dist/settings/base.js:9
 msgid "Count"
-msgstr ""
+msgstr "Брои"
 
 #: src/assets/dist/settings/base.js:9
 msgid "Title"
-msgstr ""
+msgstr "Име"
 
 #: src/assets/dist/settings/base.js:9
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: src/assets/dist/settings/base.js:9
 msgid "Sort Order"
@@ -139,6 +142,8 @@ msgstr ""
 msgid "Filtry Settings"
 msgstr ""
 
+#: src/Core/Widget.php:41
+#: src/Utils/View.php:26
 #: src/assets/dist/settings/base.js:9
 msgid "Filters"
 msgstr ""
@@ -217,4 +222,24 @@ msgstr ""
 
 #: src/assets/dist/settings/base.js:9
 msgid "Move the filtrers on mobile to a fullscreen popup and add a floating button to open and close the popup"
+msgstr ""
+
+#: src/Core/Widget.php:12
+msgid "Filtry WooCommerce Filters"
+msgstr ""
+
+#: src/Core/Widget.php:14
+msgid "Products filters"
+msgstr ""
+
+#: src/Dto/FiltersCollection.php:100
+msgid "Not an instance of a filter"
+msgstr ""
+
+#: src/Dto/TermCollection.php:59
+msgid "Not an instance of a Term"
+msgstr ""
+
+#: src/templates/popup-toggle.php:4
+msgid "Toggle filters"
 msgstr ""

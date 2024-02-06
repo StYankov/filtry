@@ -106,6 +106,10 @@ button.filtry__popup-back {
         height: calc(100dvh - #{rem(120)});
     }
 
+    .filtry__filter--sort {
+        display: block;
+    }
+
     button.filtry__reset {
         display: none;
     }
