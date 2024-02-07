@@ -59,10 +59,9 @@ function onFilterChange() {
 }
 
 function resetFilters() {
-    const noQueryUrl = window.location.href.split('?')[0];
-    const { is_taxonomy_page, shop_page } = getSettings();
+    const { shop_page } = getSettings();
 
-    window.location.href = is_taxonomy_page ? shop_page : noQueryUrl;
+    window.location.href = shop_page;
 }
 
 function collapseToggle() {
