@@ -1,6 +1,7 @@
 import { getSettings } from '../utils/settings';
 import { toggleLoader } from '../utils/loader';
 import { pushRoute } from '../utils/router';
+import { createQueryString, getActiveFilters } from './filters';
 
 /**
  * @typedef {Object} ShopResponse
@@ -29,8 +30,11 @@ export function getShop(queryString, onSuccess = null, onFail = null) {
 
     pushRoute(queryString);
 
+    // This full query string regardles of taxonomy page
+    const requestQueryString = createQueryString(getActiveFilters(), false);
+
     jQuery.ajax({
-        url: `${settings.rest_url}?${queryString}`,
+        url: `${settings.rest_url}?${requestQueryString}`,
         method: 'GET',
         headers: {
             'X-WP-Nonce': settings.rest_nonce

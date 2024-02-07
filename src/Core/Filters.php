@@ -96,9 +96,10 @@ class Filters {
             return self::$active_filters;
         }
 
+        $filters        = self::get_filters();
         $active_filters = new FiltersCollection();
 
-        foreach( self::get_filters() as $filter ) {
+        foreach( $filters as $filter ) {
             if( empty( $_REQUEST[ $filter->slug ] ) ) {
                 continue;
             }
@@ -106,6 +107,22 @@ class Filters {
             $filter->active_terms = explode( ',', $_REQUEST[ $filter->slug ] );
 
             $active_filters[ $filter->slug ] = $filter;
+        }
+
+        if( is_product_taxonomy() ) {
+            $term     = get_queried_object();
+            $taxonomy = get_taxonomy( $term->taxonomy );
+
+            $slug = isset( $taxonomy->rewrite ) && isset( $taxonomy->rewrite['slug'] ) ? $taxonomy->rewrite['slug'] : $term->taxonomy;
+
+            if( ! empty( $active_filters[ $slug ] ) ) {
+                $active_filters[ $slug ]->active_terms[] = $term->slug;
+            } else {
+                $filter = $filters[ $taxonomy->name ];
+                $filter->active_terms = [ $term->slug ];
+
+                $active_filters[ $slug ] = $filter;
+            }
         }
 
         self::$active_filters = $active_filters;
@@ -135,8 +152,8 @@ class Filters {
             return $collection;
         }
 
-        $hide_empty      = Settings::get_option( SettingsEnum::HIDE_EMPTY, true );
-        $dynamic_recount = Settings::get_option( SettingsEnum::DYNAMIC_RECOUNT, true );
+        $hide_empty      = Settings::get_option( SettingsEnum::HIDE_EMPTY );
+        $dynamic_recount = Settings::get_option( SettingsEnum::DYNAMIC_RECOUNT );
         $active_filters  = Filters::get_activated_filters();
 
         $terms = get_terms( [
@@ -187,7 +204,7 @@ class Filters {
             return $cmp;
         } );
 
-        if( Settings::get_option( SettingsEnum::SELECTED_FIRST, true ) ) {
+        if( true === boolval( Settings::get_option( SettingsEnum::SELECTED_FIRST ) ) ) {
             $collection->uasort( fn( $a, $b ) => absint( $b->is_selected ) - absint( $a->is_selected ) );
         }
 

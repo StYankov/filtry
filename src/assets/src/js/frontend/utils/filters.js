@@ -1,3 +1,5 @@
+import { getSettings } from "./settings";
+
 /**
  * @typedef {Object.<string, Array<string>>} ActiveFilters
  * 
@@ -42,16 +44,26 @@ export function getActiveFilters() {
 
 /**
  * @param {ActiveFilters} filters 
+ * @param {boolean} ignoreTaxonomyTerm Removes the taxonomy term from the query string. Only applicable on taxonomy pages
  * 
  * @return {string}
  */
-export function createQueryString(filters) {
+export function createQueryString(filters, ignoreTaxonomyTerm = true) {
     const query = new URLSearchParams();
+    const { is_taxonomy_page, taxonomy, term_slug } = getSettings();
 
     for(const key of Object.keys(filters)) {
-        const value = Array.isArray(filters[key]) ? filters[key].join(',') : filters[key];
+        let value = Array.isArray(filters[key]) ? filters[key] : [filters[key]];
 
-        query.set(key, value);
+        if(ignoreTaxonomyTerm && is_taxonomy_page && taxonomy === key) {
+            value = value.filter(slug => slug !== term_slug);
+        }
+
+        if(value.length === 0) {
+            continue;
+        }
+
+        query.set(key, value.join(','));
     }
 
     return query.toString();

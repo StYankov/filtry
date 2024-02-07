@@ -1,5 +1,6 @@
 import { createQueryString, getActiveFilters } from '../utils/filters';
 import { getSettings } from '../utils/settings';
+import { getBaseUrl } from '../utils/router';
 import { handleAjaxReload, initAjaxReload } from './ajaxSubmit';
 import { initInfinityLoad } from './infinityLoad';
 
@@ -38,7 +39,7 @@ function applyFilters() {
     if(getSettings().ajax === true) {
         handleAjaxReload(queryString);
     } else {
-        window.location.href = `${window.location.href.split('?')[0]}?${queryString}`;
+        window.location.href = queryString.length > 0 ? `${getBaseUrl()}?${queryString}` : getBaseUrl();
     }
 }
 
@@ -59,8 +60,9 @@ function onFilterChange() {
 
 function resetFilters() {
     const noQueryUrl = window.location.href.split('?')[0];
+    const { is_taxonomy_page, shop_page } = getSettings();
 
-    window.location.href = noQueryUrl;
+    window.location.href = is_taxonomy_page ? shop_page : noQueryUrl;
 }
 
 function collapseToggle() {

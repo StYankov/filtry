@@ -30,13 +30,22 @@ class Enqueue {
     }
 
     public function script_data() {
+        $is_product_taxonomy = is_product_taxonomy();
+        $object              = get_queried_object();
+        $taxonomy            = is_a( $object, 'WP_Term' ) ? get_taxonomy( $object->taxonomy ) : null;
+        $taxonomy_slug       = $taxonomy && $taxonomy->rewrite && isset( $taxonomy->rewrite['slug'] ) ? $taxonomy->rewrite['slug'] : null;
+
         return [
-            'autosubmit'     => boolval( Settings::get_option( SettingsEnum::AUTOSUBMIT ) ),
-            'ajax'           => boolval( Settings::get_option( SettingsEnum::AJAX_RELOAD ) ),
-            'infinity_load'  => boolval( Settings::get_option( SettingsEnum::INFINITY_LOAD ) ),
-            'mobile_filters' => boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS ) ),
-            'rest_nonce'     => wp_create_nonce( 'wp_rest' ),
-            'rest_url'       => rest_url( 'filtry/v1/shop' )
+            'autosubmit'       => boolval( Settings::get_option( SettingsEnum::AUTOSUBMIT ) ),
+            'ajax'             => boolval( Settings::get_option( SettingsEnum::AJAX_RELOAD ) ),
+            'infinity_load'    => boolval( Settings::get_option( SettingsEnum::INFINITY_LOAD ) ),
+            'mobile_filters'   => boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS ) ),
+            'rest_nonce'       => wp_create_nonce( 'wp_rest' ),
+            'rest_url'         => rest_url( 'filtry/v1/shop' ),
+            'is_taxonomy_page' => $is_product_taxonomy,
+            'shop_page'        => get_permalink( wc_get_page_id( 'shop' ) ),
+            'taxonomy'         => $taxonomy_slug,
+            'term_slug'        => is_a( $object, 'WP_Term' ) ? $object->slug : null,
         ];
     }
 }
