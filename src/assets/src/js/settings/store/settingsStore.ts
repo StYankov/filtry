@@ -33,11 +33,6 @@ const useSettingsStore = create<SettingsStore>()(devtools(
         setFilters: filters => set({ filters }),
         setState: (payload) => set(state => ({ ...state, ...payload })),
         setSettings: (payload) => set(state => ({ ...state, settings: { ...state.settings, ...payload } })),
-        requests: {
-            saveSettings: async () => {
-                get()
-            }
-        },
         save: async () => {
             const state = get();
 
@@ -47,6 +42,7 @@ const useSettingsStore = create<SettingsStore>()(devtools(
                 'filtry_hide_empty': state.settings.hideEmpty,
                 'filtry_dynamic_recount': state.settings.dynamicRecount,
                 'filtry_show_count': state.settings.showCount,
+                'filtry_selected_first': state.settings.selectedFirst,
                 'filtry_autosubmit': state.settings.autosubmit,
                 'filtry_ajax_reload': state.settings.ajax_reload,
                 'filtry_infinity_load': state.settings.infinity_load,

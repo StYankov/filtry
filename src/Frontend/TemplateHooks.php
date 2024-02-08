@@ -33,7 +33,7 @@ class TemplateHooks {
     public function render_reset_button() {
         $active_filters = Filters::get_activated_filters();
 
-        if( $active_filters->count() === 0 ) {
+        if( $active_filters->count() === 0 && empty( get_query_var( 's' ) ) ) {
             return;
         }
 

@@ -45,7 +45,7 @@ class Enqueue {
             'is_taxonomy_page' => $is_product_taxonomy,
             'shop_page'        => get_permalink( wc_get_page_id( 'shop' ) ),
             'taxonomy'         => $taxonomy_slug,
-            'term_slug'        => is_a( $object, 'WP_Term' ) ? $object->slug : null,
+            'term_slug'        => is_a( $object, 'WP_Term' ) ? $object->slug : null
         ];
     }
 }

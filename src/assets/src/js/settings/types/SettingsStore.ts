@@ -8,9 +8,6 @@ type SettingsStore = {
     setFilters: (filters: { [key: string]: Filter }) => void,
     setState: (payload: Partial<SettingsStore>) => void,
     setSettings: (payload: Partial<Settings>) => void,
-    requests: {
-        saveSettings: () => Promise<void>
-    },
     save: () => Promise<void>
 }
 
