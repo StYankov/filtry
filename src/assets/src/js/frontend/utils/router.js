@@ -32,7 +32,13 @@ export function getBaseUrl() {
     }
 
     // No longer a taxonomy page. Just shop page
+    // Maybe this switch has to be moved somewhere else in the future.
     window.filtrySettings.is_taxonomy_page = false;
+
+    /**
+     * Evnet fired when the page is no longer a taxonomy page but a shop page
+     */
+    document.body.dispatchEvent(new CustomEvent('filtry.taxonomy.downgrade'));
 
     /**
      * If the taxonomy term is no longer in the selected filters
