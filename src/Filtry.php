@@ -5,7 +5,7 @@ namespace Filtry;
 use Filtry\Admin\Settings;
 
 final class Filtry {
-	public string $version = '0.7.3';
+	public string $version = '0.8';
 
     /**
 	 * The single instance of the class.
