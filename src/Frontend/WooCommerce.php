@@ -15,6 +15,8 @@ class WooCommerce {
     public function add_hooks() {
         add_action( 'woocommerce_after_shop_loop', [ $this, 'render_loader' ] );
         add_action( 'woocommerce_after_shop_loop', [ $this, 'render_popup_toggle' ] );
+
+        add_filter( 'wc_get_template', [ $this, 'override_result_count_template' ], 10, 2 );
     }
 
     public function remove_hooks() {
@@ -45,5 +47,20 @@ class WooCommerce {
         if( boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS, true ) ) === true ) {
             Template::render( 'popup-toggle.php' );
         }
+    }
+
+    public function override_result_count_template( $template, $template_name ) {
+        if( $template_name !== 'loop/result-count.php' ) {
+            return $template;
+        }
+
+        $woocommerce_plugin_path = dirname( WC_PLUGIN_FILE );
+
+        // If the template file is not overriden then load the one from the plugin
+        if( strpos( $template, $woocommerce_plugin_path ) !== false ) {
+            return Template::locate_template( 'result-count.php' );
+        }
+
+        return $template;
     }
 }

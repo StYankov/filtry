@@ -243,3 +243,15 @@ msgstr ""
 #: src/templates/popup-toggle.php:4
 msgid "Toggle filters"
 msgstr ""
+
+#. translators: %d: total results
+#: src/templates/result-count.php:33
+msgid "%d result"
+msgid_plural "%d results"
+msgstr[0] "%d резултат"
+msgstr[1] "%d резултата"
+
+#. translators: 1: current results 2: total results
+#: src/templates/result-count.php:38
+msgid "%1$d of %2$d results"
+msgstr "%1$d от %2$d резултата"

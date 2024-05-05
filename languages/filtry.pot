@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Filtry plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Filtry 0.5.3\n"
+"Project-Id-Version: Filtry 0.7.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/filtry\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-02-06T05:55:38+00:00\n"
+"POT-Creation-Date: 2024-05-05T09:28:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: filtry\n"
@@ -79,6 +79,18 @@ msgstr ""
 
 #: src/templates/popup-toggle.php:4
 msgid "Toggle filters"
+msgstr ""
+
+#. translators: %d: total results
+#: src/templates/result-count.php:33
+msgid "%d result"
+msgid_plural "%d results"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: current results 2: total results
+#: src/templates/result-count.php:38
+msgid "%1$d of %2$d results"
 msgstr ""
 
 #: src/templates/widget.php:13
