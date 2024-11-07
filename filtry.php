@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Filtry
  * Plugin URI: https://filtry.stoilyankov.com/
- * Description: WooCommerce Product Filters
+ * Description: Lightning-fast WooCommerce filters that make shopping a breeze! More finds, more sales, less fuss!
  * Version: 0.7.3
  * Author: Stoil Yankov
  * Author URI: https://stoilyankov.com

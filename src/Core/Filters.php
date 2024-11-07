@@ -36,6 +36,10 @@ class Filters {
 
         $filters = FiltersCollection::fromArray( $filters );
 
+        if( is_admin() ) {
+            $filters = self::merge_with_default( $filters );
+        }
+
         $filters->uasort( fn( $a, $b ) => $a['order'] - $b['order'] );
 
         self::$filters = $filters;
@@ -209,5 +213,29 @@ class Filters {
         }
 
         return $collection;
+    }
+
+    private static function merge_with_default( FiltersCollection $filters ): FiltersCollection {
+        $default_filters = self::get_default_filters();
+
+        /**
+         * Add missing taxonomies to the saved filters collection
+         */
+        foreach( $default_filters as $filter ) {
+            if( empty( $filters[ $filter->id ] ) ) {
+                $filters[ $filter->id ] = $filter;
+            }
+        }
+
+        /**
+         * If filter does not exist in the saved filters collection, remove it
+         */
+        foreach( $filters as $filter ) {
+            if( empty( $default_filters[ $filter->id ] ) ) {
+                unset( $filters[ $filter->id ] );
+            }
+        }
+
+        return $filters;
     }
 }
