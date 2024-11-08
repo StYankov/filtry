@@ -32,7 +32,7 @@ class Enqueue {
     }
 
     public function script_data() {
-        $is_product_taxonomy = is_product_taxonomy();
+        $is_product_taxonomy = is_product_taxonomy() && ! is_post_type_archive();
         $object              = get_queried_object();
         $taxonomy            = is_a( $object, 'WP_Term' ) ? get_taxonomy( $object->taxonomy ) : null;
         $taxonomy_slug       = $taxonomy && $taxonomy->rewrite && isset( $taxonomy->rewrite['slug'] ) ? $taxonomy->rewrite['slug'] : null;
