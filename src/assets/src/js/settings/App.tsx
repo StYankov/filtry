@@ -1,7 +1,7 @@
 import Header from './components/Header';
 import Settings from './components/TabSettings';
-import '../../css/settings/style.css';
 import Notices from './components/Notices';
+import '../../css/settings/style.css';
 
 function App() {
     return (

@@ -19,7 +19,7 @@ button.filtry__reset {
     align-items: center;
     justify-content: space-between;
     gap: rem(10);
-    margin-bottom: rem(16);
+    margin-bottom: rem(15);
 
     h4 {
         margin: 0;
@@ -33,14 +33,16 @@ button.filtry__reset {
         position: relative;
         width: rem(34);
         height: rem(34);
+        padding: 0;
         cursor: pointer;
         
         &::before,
         &::after {
+            content: '';
+            display: block;
             position: absolute;
             top: 0;
             left: rem(15);
-            content: ' ';
             height: rem(36);
             width: rem(2);
             background-color: #333;
@@ -79,6 +81,7 @@ button.filtry__reset {
     justify-content: space-between;
     background-color: #fff;
     padding: rem(9) rem(15);
+    padding-right: 0;
     background-color: var(--filtry-c-primary);
     border-top-left-radius: rem(4);
     border-top-right-radius: rem(4);
@@ -88,6 +91,22 @@ button.filtry__reset {
     color: var(--filtry-c-secondary);
     font-size: rem(18);
     margin: 0;
+}
+
+button.filtry__filter-collapse {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: rem(9) rem(15);
+    outline: none;
+
+    &:hover {
+        background-color: transparent;
+    }
+
+    &:focus {
+        outline: none;
+    }
 }
 
 button.filtry__filter-collapse .chevron::before {
@@ -140,6 +159,12 @@ button.filtry__filter-collapse .chevron::before {
     display: block;
     margin-left: auto;
     font-size: rem(13);
+}
+
+.filtry__footer {
+    display: flex;
+    flex-direction: column;
+    gap: rem(16);
 }
 
 .filtry__filter--sort {

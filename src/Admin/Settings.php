@@ -2,6 +2,7 @@
 
 namespace Filtry\Admin;
 
+use Filtry\Enums\DesignSettingsEnum;
 use Filtry\Enums\SettingsEnum;
 use Filtry\Filtry;
 
@@ -68,6 +69,31 @@ class Settings {
                 'id'           => SettingsEnum::MOBILE_FILTERS->value,
                 'default'      => true,
                 'type'         => 'boolean'
+            ],
+            [
+                'id'           => DesignSettingsEnum::DISABLE_STYLES->value,
+                'default'      => false,
+                'type'         => 'boolean'
+            ],
+            [
+                'id'           => DesignSettingsEnum::PRIMART_COLOR->value,
+                'default'      => '#F3F8FF',
+                'type'         => 'string'
+            ],
+            [
+                'id'           => DesignSettingsEnum::SECONDARY_COLOR->value,
+                'default'      => '#07090F',
+                'type'         => 'string'
+            ],
+            [
+                'id'           => DesignSettingsEnum::ACCENT_COLOR->value,
+                'default'      => '#273469',
+                'type'         => 'string'
+            ],
+            [
+                'id'           => DesignSettingsEnum::FLOATING_BUTTON_POSITION->value,
+                'default'      => 'none',
+                'type'         => 'string'
             ]
         ];
 
@@ -112,8 +138,8 @@ class Settings {
         wp_enqueue_style( 'wp-components' );
     }
 
-    public static function get_option( string|SettingsEnum $key, mixed $default = false ): mixed {
-        if( $key instanceof SettingsEnum ) {
+    public static function get_option( string|SettingsEnum|DesignSettingsEnum $key, mixed $default = false ): mixed {
+        if( $key instanceof SettingsEnum || $key instanceof DesignSettingsEnum ) {
             $key = $key->value;
         }
 

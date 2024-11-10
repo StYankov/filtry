@@ -1,3 +1,4 @@
+import Design from './Design';
 import Filter from './Filter';
 
 type PassedState = {
@@ -10,7 +11,8 @@ type PassedState = {
     ajax_reload: boolean,
     infinity_load: boolean,
     enable_loader: boolean,
-    mobile_filters: boolean
+    mobile_filters: boolean,
+    design: Design
 }
 
 export default PassedState;

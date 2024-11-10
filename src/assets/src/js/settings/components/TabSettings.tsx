@@ -2,6 +2,7 @@ import { Panel, PanelBody, Button, TabPanel } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import Filters from './Tabs/Filters';
 import Settings from './Tabs/Settings';
+import Design from './Tabs/Design';
 import useSettingsStore from '../store/settingsStore';
 
 export default function () {
@@ -18,6 +19,10 @@ export default function () {
                     {
                         name: 'settings',
                         title: __( 'Settings', 'filtry' )
+                    },
+                    {
+                        name: 'design',
+                        title: __( 'Design', 'filtry' )
                     }
                 ] }
             >
@@ -45,6 +50,8 @@ function TabSwitcher(tabId: string) {
             return <Filters />
         case 'settings':
             return <Settings />
+        case 'design':
+            return <Design />;
         default:
             return null;
     }

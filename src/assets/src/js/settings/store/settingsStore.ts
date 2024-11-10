@@ -5,7 +5,7 @@ import { store as noticesStore } from '@wordpress/notices';
 import SettingsStore from '../types/SettingsStore';
 import Filter from '../types/Filter';
 
-const useSettingsStore = create<SettingsStore>()(devtools(
+export const useSettingsStore = create<SettingsStore>()(devtools(
     (set, get) => ({
         filters: window.filtersSettings.filters,
         settings: {
@@ -19,6 +19,7 @@ const useSettingsStore = create<SettingsStore>()(devtools(
             enable_loader: window.filtersSettings.enable_loader,
             mobile_filters: window.filtersSettings.mobile_filters
         },
+        designSettings: window.filtersSettings.design,
         updateFilter: (id, newValues) => {
             if(!get().filters[id]) {
                 return;
@@ -33,6 +34,7 @@ const useSettingsStore = create<SettingsStore>()(devtools(
         setFilters: filters => set({ filters }),
         setState: (payload) => set(state => ({ ...state, ...payload })),
         setSettings: (payload) => set(state => ({ ...state, settings: { ...state.settings, ...payload } })),
+        setDesignSetting: (payload) => set(state => ({ ...state, designSettings: { ...state.designSettings, ...payload } })),
         save: async () => {
             const state = get();
 
@@ -47,7 +49,9 @@ const useSettingsStore = create<SettingsStore>()(devtools(
                 'filtry_ajax_reload': state.settings.ajax_reload,
                 'filtry_infinity_load': state.settings.infinity_load,
                 'filtry_enable_laoder': state.settings.enable_loader,
-                'filtry_mobile_filters': state.settings.mobile_filters
+                'filtry_mobile_filters': state.settings.mobile_filters,
+                'filtry_disable_styles': state.designSettings.disable,
+                'filtry_floating_button_position': state.designSettings.floating_button_position,
             });
 
             await settings.save();

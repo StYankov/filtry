@@ -3,6 +3,7 @@
 namespace Filtry\Frontend;
 
 use Filtry\Admin\Settings;
+use Filtry\Enums\DesignSettingsEnum;
 use Filtry\Enums\SettingsEnum;
 use Filtry\Filtry;
 
@@ -26,8 +27,9 @@ class Enqueue {
 
         wp_enqueue_script( 'filtry-frontend' );
 
-        if( false === apply_filters( 'filtry_unstyled', false ) ) {
+        if( boolval( Settings::get_option( DesignSettingsEnum::DISABLE_STYLES ) ) === false ) {
             wp_enqueue_style( 'filtry-frontend' );
+            wp_add_inline_style( 'filtry-frontend', $this->css_variables() );
         }
     }
 
@@ -47,7 +49,24 @@ class Enqueue {
             'is_taxonomy_page' => $is_product_taxonomy,
             'shop_page'        => get_permalink( wc_get_page_id( 'shop' ) ),
             'taxonomy'         => $taxonomy_slug,
-            'term_slug'        => is_a( $object, 'WP_Term' ) ? $object->slug : null
+            'term_slug'        => is_a( $object, 'WP_Term' ) ? $object->slug : null,
+            'design'           => [
+                'disable' => boolval( Settings::get_option( DesignSettingsEnum::DISABLE_STYLES ) )
+            ]
         ];
+    }
+
+    public function css_variables() {
+        $primary_color   = Settings::get_option( DesignSettingsEnum::PRIMART_COLOR, '#F3F8FF' );
+        $secondary_color = Settings::get_option( DesignSettingsEnum::SECONDARY_COLOR, '#07090F' );
+        $accent_color    = Settings::get_option( DesignSettingsEnum::ACCENT_COLOR, '#273469' );
+
+        return "
+            :root {
+                --filtry-primary-color: {$primary_color};
+                --filtry-secondary-color: {$secondary_color};
+                --filtry-accent-color: {$accent_color};
+            }
+        ";
     }
 }

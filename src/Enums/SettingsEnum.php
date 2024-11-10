@@ -11,7 +11,7 @@ enum SettingsEnum: string {
     case SELECTED_FIRST  = 'selected_first';
     case AUTOSUBMIT      = 'autosubmit';
     case AJAX_RELOAD     = 'ajax_reload';
-    case INFINITY_LOAD    = 'infinity_load';
+    case INFINITY_LOAD   = 'infinity_load';
     case ENABLE_LOADER   = 'enable_loader';
     case MOBILE_FILTERS  = 'mobile_filters';
 }
