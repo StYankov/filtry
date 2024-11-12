@@ -25,4 +25,4 @@ function filtry() {
 
 $GLOBALS['filtry'] = filtry();
 
-register_activation_hook( __FILE__, [\Filtry\Install::class, 'install'] );
+register_activation_hook( __FILE__, [ \Filtry\Install::class, 'install' ] );

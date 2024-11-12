@@ -13,6 +13,7 @@ class WooCommerce {
     }
     
     public function add_hooks() {
+        add_action( 'woocommerce_before_shop_loop', [ $this, 'render_mobile_filters_open_button' ], 30 );
         add_action( 'woocommerce_after_shop_loop', [ $this, 'render_loader' ] );
         add_action( 'woocommerce_after_shop_loop', [ $this, 'render_popup_toggle' ] );
 
@@ -23,6 +24,12 @@ class WooCommerce {
         if( true === boolval( Settings::get_option( SettingsEnum::INFINITY_LOAD ) ) ) {
             remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination' );
             add_action( 'woocommerce_after_shop_loop', [ $this, 'render_load_more_button'] );
+        }
+    }
+
+    public function render_mobile_filters_open_button() {
+        if( boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS, true ) ) === true ) {
+            Template::render( 'mobile-filters-open-button.php' );
         }
     }
 

@@ -27,6 +27,6 @@ class View {
             'mobileFilters' => boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS, true ) )
         ] );
 
-        return Template::render( 'widget.php', $data );
+        return Template::render( 'widget/widget.php', $data );
     }
 }

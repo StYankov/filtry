@@ -67,39 +67,40 @@ export default function FilterComponent({ filter, id }: Props) {
                         <SelectControl
                             label={ __( 'View Type', 'filtry' ) }
                             help={ __( 'How the filter will be displayed on the website', 'filtry' ) }
-                            options={ [
-                                { label: __( 'Radio', 'filtry' ), value: 'radio' },
-                                { label: __( 'Checkbox', 'filtry' ), value: 'checkbox' }
-                            ] }
+                            options={ getViewTypeOptions( filter ) }
                             value={ filter.view }
                             onChange={ (value) => updateFilter(filter.id, { view: value }) }
                         />
                     </div>
 
-                    <button 
-                        className='bg-transparent border-0 h-10 cursor-pointer mt-5 transition'
-                        style={{ transform: showDetails ? 'rotate(180deg)' : 'rotate(0deg)' }}
-                        type='button' 
-                        onClick={ () => setShowDetails(state => ! state) }
+                    { filter.type === 'taxonomy' && (
+                        <button 
+                            className='bg-transparent border-0 h-10 cursor-pointer mt-5 transition'
+                            style={{ transform: showDetails ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                            type='button' 
+                            onClick={ () => setShowDetails(state => ! state) }
+                        >
+                            <span className="dashicons dashicons-arrow-down-alt2"></span>
+                        </button>                        
+                    ) }
+
+                </div>
+                { filter.type === 'taxonomy' && (
+                    <div 
+                        className='overflow-hidden'
+                        style={{ transition: '0.3s max-height ease-out', maxHeight: showDetails ? 400 : 0 }}
                     >
-                        <span className="dashicons dashicons-arrow-down-alt2"></span>
-                    </button>
-                </div>
-                <div 
-                    className='overflow-hidden'
-                    style={{ transition: '0.3s max-height ease-out', maxHeight: showDetails ? 400 : 0 }}
-                >
-                    <FilterDetails filter={ filter } />
-                </div>
+                        <FilterDetails filter={ filter } />
+                    </div>
+                ) }
             </PanelRow>
         </div>
     );
 }
 
-function LogicHelpText() {
-    return (
-        <div className='max-w-[300px]'>
-            AND - If 2 or more terms are selected then only the products that the selected terms (all of them) will be displayed. OR - show the products that are in at least one of the selected terms.
-        </div>
-    );
+function getViewTypeOptions( filter: Filter ): { label: string, value: string }[] {
+    return [
+        { label: __( 'Radio', 'filtry' ), value: 'radio' },
+        { label: __( 'Checkbox', 'filtry' ), value: 'checkbox' }
+    ];
 }

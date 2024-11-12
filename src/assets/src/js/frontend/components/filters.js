@@ -12,6 +12,7 @@ export function initFilters() {
     jQuery(document.body).on('click', '.filtry__popup-close', popupFiltersToggle);
     jQuery(document.body).on('click', '.filtry__popup-toggle', popupFiltersToggle);
     jQuery(document.body).on('click', '.filtry__popup-back', popupFiltersToggle);
+    jQuery(document.body).on('click', '.filtry__open-filters', popupFiltersToggle);
     jQuery(document.body).on('click', '.filtry__mobile-reset', resetFilters);
     jQuery(document.body).on('click', '.filtry__mobile-apply', applyFilters);
 

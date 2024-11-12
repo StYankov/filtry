@@ -138,11 +138,13 @@ class Filters {
         $filters = self::get_filters();
 
         foreach( $filters as $filter ) {
-            $filter->terms = self::get_terms_for_filter( $filter );
+            if( $filter->type === TypeEnum::TAXONOMY ) {
+                $filter->terms = self::get_terms_for_filter( $filter );
 
-            // Hide filters with 0 terms
-            if( $filter->terms->count() === 0 ) {
-                $filter->enabled = false;
+                // Hide filters with 0 terms
+                if( $filter->terms->count() === 0 ) {
+                    $filter->enabled = false;
+                }
             }
         }
 

@@ -5,7 +5,7 @@ type Filter = {
     order: number,
     label: string,
     type: 'taxonomy' | 'price',
-    view: 'checkbox' | 'radio' | 'select',
+    view: 'checkbox' | 'radio' | 'select' | 'links',
     collapsable: boolean,
     logic: 'and' | 'or',
     sort: 'count' | 'title' | 'id',

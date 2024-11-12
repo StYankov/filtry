@@ -1,1 +1,1 @@
-<button type="button" class="button filtry__reset"><?php _e( 'Reset', 'filtry' ); ?></button>
+<button type="button" class="button filtry__reset filtry__button filtry__button--outlined"><?php _e( 'Reset', 'filtry' ); ?></button>

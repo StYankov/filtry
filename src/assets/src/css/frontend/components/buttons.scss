@@ -1,0 +1,30 @@
+button.filtry__button {
+    border-radius: rem(4);
+    padding: rem(7) rem(15);
+    font-weight: 600;
+    color: var(--filtry-c-primary);
+    background-color: var(--filtry-c-accent);
+    border-radius: rem(4);
+    transition: 0.3s ease-out;
+
+    &:hover {
+        background-color: var(--filtry-c-secondary);
+        color: #fff;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+button.filtry__button--outlined {
+    background-color: #fff;
+    color: var(--filtry-c-accent);
+    border: 1px solid var(--filtry-c-accent);
+
+    &:hover {
+        border-color: var(--filtry-c-accent);
+        background-color: var(--filtry-c-accent);
+        color: #fff;
+    }
+}
