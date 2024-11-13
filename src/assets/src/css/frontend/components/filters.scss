@@ -123,6 +123,10 @@ button.filtry__filter-collapse .chevron::before {
     transform: rotate(135deg);
 }
 
+.filtry__sort {
+    padding: rem(15);;
+}
+
 .filtry__list {
     display: flex;
     flex-direction: column;

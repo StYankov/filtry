@@ -9,12 +9,21 @@ use Filtry\Utils\Template;
 
 class TemplateHooks {
     public function __construct() {
+        add_action( 'filtry_pre_filters',  [ $this, 'render_sort_filter' ] );
         add_action( 'filtry_after_filters', [ $this, 'render_filter_widget_footer_wrapper_open' ] );
         add_action( 'filtry_after_filters', [ $this, 'render_submit_button' ] );
         add_action( 'filtry_after_filters', [ $this, 'render_reset_button' ], 20 );
         add_action( 'filtry_after_filters', [ $this, 'render_filter_widget_footer_wrapper_close' ], 30 );
         
         add_action( 'filtry_widget_footer', [ $this, 'render_popup_controls' ] );
+    }
+
+    public function render_sort_filter() {
+        if( false === boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS ) ) ) {
+            return;
+        }
+        
+        Template::render( 'filters/sort-options.php' );
     }
 
     public function render_filter_widget_footer_wrapper_open() {
