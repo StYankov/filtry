@@ -8,33 +8,16 @@ use Filtry\Utils\Template;
 
 class WooCommerce {
     public function __construct() {
-        $this->add_hooks();
-        $this->remove_hooks();
-    }
-    
-    public function add_hooks() {
-        add_action( 'woocommerce_before_shop_loop', [ $this, 'render_mobile_filters_open_button' ], 30 );
-        add_action( 'woocommerce_after_shop_loop', [ $this, 'render_loader' ] );
-        add_action( 'woocommerce_after_shop_loop', [ $this, 'render_popup_toggle' ] );
+        $this->maybe_replace_wc_pagination();
 
         add_filter( 'wc_get_template', [ $this, 'override_result_count_template' ], 10, 2 );
     }
 
-    public function remove_hooks() {
+    public function maybe_replace_wc_pagination() {
         if( true === boolval( Settings::get_option( SettingsEnum::INFINITY_LOAD ) ) ) {
             remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination' );
             add_action( 'woocommerce_after_shop_loop', [ $this, 'render_load_more_button'] );
         }
-    }
-
-    public function render_mobile_filters_open_button() {
-        if( boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS, true ) ) === true ) {
-            Template::render( 'mobile-filters-open-button.php' );
-        }
-    }
-
-    public function render_loader() {
-        Template::render( 'loader.php' );
     }
 
     public function render_load_more_button() {
@@ -48,12 +31,6 @@ class WooCommerce {
         }
 
         Template::render( 'load-more-button.php' );
-    }
-
-    public function render_popup_toggle() {
-        if( boolval( Settings::get_option( SettingsEnum::MOBILE_FILTERS, true ) ) === true ) {
-            Template::render( 'popup-toggle.php' );
-        }
     }
 
     public function override_result_count_template( $template, $template_name ) {
