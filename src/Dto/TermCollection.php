@@ -3,7 +3,6 @@
 namespace Filtry\Dto;
 
 use ArrayObject;
-use Filtry\Filtry;
 use InvalidArgumentException;
 use Iterator;
 

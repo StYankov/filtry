@@ -133,8 +133,8 @@ class Settings {
 
     public function enqueue() {
         wp_enqueue_script( 'filtry-settings', Filtry::plugin_url( 'src/assets/dist/settings/base.js' ), [ 'react', 'react-dom', 'wp-api', 'wp-data', 'wp-notices', 'wp-components' ], '1.0', true );
-        wp_add_inline_script( 'filtry-settings', 'window.filtersSettings = ' . json_encode( Data::get_data() ), 'before' );
         
+        wp_add_inline_script( 'filtry-settings', 'window.filtersSettings = ' . wp_json_encode( Data::get_data() ), 'before' );
         wp_enqueue_style( 'wp-components' );
     }
 

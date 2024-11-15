@@ -2,7 +2,6 @@
 
 namespace Filtry\Core;
 
-use Filtry\Filtry;
 use Filtry\Utils\View;
 
 class Widget extends \WP_Widget {
@@ -42,7 +41,7 @@ class Widget extends \WP_Widget {
         }
         ?>
             <p>
-                <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+                <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'default' ); ?></label>
                 <input 
                     class="widefat" 
                     id="<?php echo $this->get_field_id( 'title' ); ?>" 
