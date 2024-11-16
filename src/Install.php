@@ -12,7 +12,7 @@ class Install {
 		if( empty( Settings::get_option( SettingsEnum::FILTERS ) ) ) {
 			Settings::set_option(
 				SettingsEnum::FILTERS,
-				wp_json_encode( json_encode( Filters::get_default_filters()->getArrayCopy() ), true )
+				wp_json_encode( Filters::get_default_filters()->getArrayCopy(), true )
 			);
 		}
 
