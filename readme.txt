@@ -2,7 +2,7 @@
 Contributors: styankov
 Tags: woocommerce, filters, ajax, search, product-filters, shop
 Requires at least: 6.2
-Tested up to: 6.6.2
+Tested up to: 6.7
 Stable tag: 0.9
 Requires PHP: 7.4
 License: GPL-2.0-or-later
