@@ -14,7 +14,7 @@ class RestAPI {
         register_rest_route( 'filtry/v1', 'shop', [
             'methods'             => \WP_REST_Server::READABLE,
             'callback'            => [$this, 'get_items'],
-            'permission_callback' => [$this, 'verify_nonce'] 
+            'permission_callback' => '__return_true'
         ] );
     }
 
@@ -52,10 +52,6 @@ class RestAPI {
         ];
     }
 
-    public function verify_nonce( \WP_REST_Request $request ) {
-        return wp_verify_nonce( $request->get_header( 'X-WP-Nonce' ), 'wp_rest' );
-    }
-
     public function create_query( \WP_REST_Request $request ) {
         $page = $request->has_param( 'paged' ) ? absint( $request->get_param( 'paged' ) ) : 1;
 
@@ -66,6 +62,10 @@ class RestAPI {
         $query->set( 'posts_per_page', $this->get_products_per_page() );
         $query->set( 'paged', $page );
         $query->set( 'ep_integrate', true ); // Add ElasticPress support
+
+        if( $request->has_param( 's' ) ) {
+            $query->set( 's', $request->get_param( 's' ) );
+        }
 
         // Trick WC that this is the main query to all the actions/filters are applied
         $GLOBALS['wp_the_query'] = $query;

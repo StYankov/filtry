@@ -26,8 +26,6 @@ export function getActiveFilters() {
                     activeFilters[taxonomy] = [value];
                 }
             });
-        } else {
-
         }
     });
 
@@ -37,6 +35,10 @@ export function getActiveFilters() {
 
     if(currentQuery.has('orderby')) {
         activeFilters.orderby = currentQuery.get('orderby');
+    }
+
+    if(currentQuery.has('s')) {
+        activeFilters.s = currentQuery.get('s');
     }
 
     return activeFilters;
