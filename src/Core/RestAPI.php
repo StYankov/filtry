@@ -39,7 +39,26 @@ class RestAPI {
             wc_get_template_part( 'content', 'product' );
         }
 
-        $current_page   = absint( $query->get( 'paged', 1 ) );
+        $current_page = max( 1, absint( $query->get( 'paged', 1 ) ) );
+
+        /**
+         * `woocommerce_products_will_display()` needs `wc_get_loop_prop( 'total' ) > 0`
+         * and a loop display mode other than subcategories-only. During REST callbacks
+         * `wc_setup_loop()` is never wired to this query from the storefront, so total
+         * stays at 0. Mirror the queried loop before rendering filter markup.
+         */
+        if( function_exists( 'wc_setup_loop' ) ) {
+            wc_setup_loop(
+                [
+                    'total'         => max( 0, (int) $query->found_posts ),
+                    'total_pages'   => max( 0, (int) $query->max_num_pages ),
+                    'per_page'      => max( 0, (int) $query->get( 'posts_per_page' ) ),
+                    'current_page'  => $current_page,
+                    'is_filtered'   => true,
+                    'is_paginated'  => (int) $query->max_num_pages > 1,
+                ]
+            );
+        }
 
         return [
             'current_page' => $current_page,
