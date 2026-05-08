@@ -66,10 +66,14 @@ function resetFilters() {
 }
 
 function collapseToggle() {
-    jQuery(this).closest('.filtry__filter')
-        .toggleClass('filtry__filter--hidden')
-        .find('.filtry__list')
-        .slideToggle();
+    const $filter = jQuery(this).closest('.filtry__filter');
+
+    $filter.toggleClass('filtry__filter--hidden');
+
+    const expanded = !$filter.hasClass('filtry__filter--hidden');
+    $filter.find('.filtry__filter-collapse').attr('aria-expanded', expanded ? 'true' : 'false');
+
+    $filter.find('.filtry__list').slideToggle();
 }
 
 function popupFiltersToggle() {

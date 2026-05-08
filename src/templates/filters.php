@@ -25,8 +25,13 @@ use Filtry\Utils\Template;
                 <h4 class="filtry__filter-title"><?php echo $filter->label; ?></h4>
 
                 <?php if( $filter->collapsable ) : ?>
-                    <button type="button" class="filtry__filter-collapse">
-                        <span class="chevron"></span>
+                    <button
+                        type="button"
+                        class="filtry__filter-collapse"
+                        aria-expanded="true"
+                        aria-label="<?php echo esc_attr( sprintf( __( 'Toggle %s filter options', 'filtry' ), wp_strip_all_tags( $filter->label ) ) ); ?>"
+                    >
+                        <span class="chevron" aria-hidden="true"></span>
                     </button>
                 <?php endif; ?>
             </div>
