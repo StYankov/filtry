@@ -138,7 +138,7 @@ class Filters {
         $filters = self::get_filters();
 
         foreach( $filters as $filter ) {
-            if( $filter->type === TypeEnum::TAXONOMY ) {
+            if( $filter->type === TypeEnum::TAXONOMY && taxonomy_exists( $filter->id ) ) {
                 $filter->terms = self::get_terms_for_filter( $filter );
 
                 // Hide filters with 0 terms
@@ -167,6 +167,9 @@ class Filters {
             'hide_empty' => $hide_empty
         ] );
 
+        if( is_wp_error( $terms ) ) {
+            return $collection;
+        }
 
         foreach( $terms as $term ) {
             $t = new Term(
