@@ -9,16 +9,16 @@ use Filtry\Filtry;
 
 class Enqueue {
     public function __construct() {
-        add_action( 'wp_enqueue_scripts', [$this, 'enqueue'] );
+        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue' ] );
     }
 
     public function enqueue() {
         $version = Filtry::instance()->version;
 
-        wp_register_script( 'filtry-frontend', Filtry::plugin_url() . '/src/assets/dist/frontend/base.js', ['jquery'], $version, true );
+        wp_register_script( 'filtry-frontend', untrailingslashit( Filtry::plugin_url() ) . '/src/assets/dist/frontend/base.js', ['jquery'], $version, true );
         wp_add_inline_script( 'filtry-frontend', 'window.filtrySettings = ' . json_encode( $this->script_data() ), 'before' );
 
-        wp_register_style( 'filtry-frontend', Filtry::plugin_url() . '/src/assets/dist/frontend/style.css', [], $version );
+        wp_register_style( 'filtry-frontend', untrailingslashit( Filtry::plugin_url() ) . '/src/assets/dist/frontend/style.css', [], $version );
 
         // If the page is not part of woocommerce store don't enqueue anything
         if( ! ( is_shop() || is_product_taxonomy() || is_search() ) ) {

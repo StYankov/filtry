@@ -1,0 +1,335 @@
+# Copyright (C) 2026 Stoil Yankov
+# This file is distributed under the GPL2.
+msgid ""
+msgstr ""
+"Project-Id-Version: Filtry 0.9\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/filtry\n"
+"POT-Creation-Date: 2026-09-25T05:13:11+00:00\n"
+"PO-Revision-Date: 2026-09-25\n"
+"Last-Translator: Cursor Agent\n"
+"Language-Team: Serbian (Latin)\n"
+"Language: sr_RS@latin\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: filtry\n"
+
+#. Plugin Name of the plugin
+#: filtry.php
+#: src/Admin/Settings.php:122
+#: src/Admin/Settings.php:123
+msgid "Filtry"
+msgstr "Filtry"
+
+#. Plugin URI of the plugin
+#: filtry.php
+msgid "https://filtry.stoilyankov.com/"
+msgstr "https://filtry.stoilyankov.com/"
+
+#. Description of the plugin
+#: filtry.php
+msgid "Lightning-fast WooCommerce filters that make shopping a breeze! More finds, more sales, less fuss!"
+msgstr ""
+"Brzi WooCommerce filteri koji olakšavaju kupovinu! Više pronalazaka, više "
+"prodaje, manje muke!"
+
+#. Author of the plugin
+#: filtry.php
+msgid "Stoil Yankov"
+msgstr "Stoil Yankov"
+
+#. Author URI of the plugin
+#: filtry.php
+msgid "https://stoilyankov.com"
+msgstr "https://stoilyankov.com"
+
+#: src/Core/Widget.php:11
+msgid "Filtry WooCommerce Filters"
+msgstr "Filtry WooCommerce filteri"
+
+#: src/Core/Widget.php:13
+msgid "Products filters"
+msgstr "Filteri proizvoda"
+
+#: src/Core/Widget.php:40
+#: src/Utils/View.php:26
+#: src/assets/dist/settings/base.js:9
+msgid "Filters"
+msgstr "Filteri"
+
+#: src/Dto/FiltersCollection.php:100
+msgid "Not an instance of a filter"
+msgstr "Nije instanca filtera"
+
+#: src/Dto/TermCollection.php:58
+msgid "Not an instance of a Term"
+msgstr "Nije instanca termina"
+
+#: src/templates/filters.php:32
+#, php-format
+msgid "Toggle %s filter options"
+msgstr "Prikaži/sakrij opcije filtera %s"
+
+#: src/templates/filters/sort-options.php:4
+#: src/assets/dist/settings/base.js:9
+msgid "Sort"
+msgstr "Sortiranje"
+
+#: src/templates/load-more-button.php:2
+msgid "Show more"
+msgstr "Prikaži još"
+
+#: src/templates/mobile-filters-open-button.php:1
+#: src/templates/mobile-filters-open-button.php:2
+msgid "Open Filters"
+msgstr "Otvori filtere"
+
+#: src/templates/popup-controls.php:5
+#: src/templates/widget/widget.php:13
+msgid "Close filters"
+msgstr "Zatvori filtere"
+
+#: src/templates/popup-controls.php:9
+#: src/templates/reset-button.php:1
+msgid "Reset"
+msgstr "Poništi"
+
+#: src/templates/popup-controls.php:13
+#: src/templates/submit-button.php:2
+msgid "Apply"
+msgstr "Primeni"
+
+#: src/templates/popup-toggle.php:16
+msgid "Toggle filters"
+msgstr "Prikaži/sakrij filtere"
+
+#. translators: %d: total results
+#: src/templates/result-count.php:33
+#, php-format
+msgid "%d result"
+msgid_plural "%d results"
+msgstr[0] "%d rezultat"
+msgstr[1] "%d rezultata"
+msgstr[2] "%d rezultata"
+
+#. translators: 1: current results 2: total results
+#: src/templates/result-count.php:38
+#, php-format
+msgid "%1$d of %2$d results"
+msgstr "%1$d od %2$d rezultata"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Enabled"
+msgstr "Uključeno"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Filter Name"
+msgstr "Naziv filtera"
+
+#: src/assets/dist/settings/base.js:9
+msgid "How the filter name will be displayed on the website"
+msgstr "Kako će se naziv filtera prikazati na sajtu"
+
+#: src/assets/dist/settings/base.js:9
+msgid "View Type"
+msgstr "Tip prikaza"
+
+#: src/assets/dist/settings/base.js:9
+msgid "How the filter will be displayed on the website"
+msgstr "Kako će se filter prikazati na sajtu"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Radio"
+msgstr "Radio dugme"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Checkbox"
+msgstr "Polje za potvrdu"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Logic"
+msgstr "Logika"
+
+#: src/assets/dist/settings/base.js:9
+msgid "AND"
+msgstr "AND"
+
+#: src/assets/dist/settings/base.js:9
+msgid "OR"
+msgstr "OR"
+
+#: src/assets/dist/settings/base.js:9
+msgid "How to sort the terms inside of filter block"
+msgstr "Kako sortirati termine unutar bloka filtera"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Count"
+msgstr "Broj"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Title"
+msgstr "Naslov"
+
+#: src/assets/dist/settings/base.js:9
+msgid "ID"
+msgstr "ID"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Sort Order"
+msgstr "Redosled sortiranja"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Order of sorting (ASC or DESC)"
+msgstr "Redosled sortiranja (rastući ili opadajući)"
+
+#: src/assets/dist/settings/base.js:9
+msgid "ASC"
+msgstr "Rastuće"
+
+#: src/assets/dist/settings/base.js:9
+msgid "DESC"
+msgstr "Opadajuće"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Collapsable"
+msgstr "Skupljivo"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Enable the category box to be collapsable"
+msgstr "Omogući da se okvir kategorije može skupiti"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Filtry Settings"
+msgstr "Filtry podešavanja"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Settings"
+msgstr "Podešavanja"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Design"
+msgstr "Dizajn"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Disable styles"
+msgstr "Onemogući stilove"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Disable styles that come with the plugin. Usefull if you want to style the filters yourself"
+msgstr ""
+"Onemogući stilove koji dolaze uz dodatak. Korisno ako želite sami da "
+"stilizujete filtere"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Primary color"
+msgstr "Primarna boja"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Secondary color"
+msgstr "Sekundarna boja"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Accent color"
+msgstr "Akcentna boja"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Mobiel Floatin Button Position"
+msgstr "Pozicija plutajućeg dugmeta na mobilnom"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Bottom Right"
+msgstr "Dole desno"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Bottom Left"
+msgstr "Dole levo"
+
+#: src/assets/dist/settings/base.js:9
+msgid "None"
+msgstr "Nema"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Position of the floating button on mobile devices. Mobile filters must be enabled first"
+msgstr ""
+"Pozicija plutajućeg dugmeta na mobilnim uređajima. Mobilni filteri moraju "
+"prvo biti uključeni"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Show terms count"
+msgstr "Prikaži broj termina"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Show the count of products in a category"
+msgstr "Prikaži broj proizvoda u kategoriji"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Dynamic recount"
+msgstr "Dinamičko prebrojavanje"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Count the numbers of products in a category depending on the currently selected filters"
+msgstr "Broji proizvode u kategoriji u zavisnosti od trenutno izabranih filtera"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Hide Empty"
+msgstr "Sakrij prazne"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Hide categories with 0 products"
+msgstr "Sakrij kategorije sa 0 proizvoda"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Selected First"
+msgstr "Izabrani prvo"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Show selected filters on top"
+msgstr "Prikaži izabrane filtere na vrhu"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Autosubmit"
+msgstr "Automatska primena"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Apply a filter immediatelly after it's toggled on or off"
+msgstr "Primeni filter odmah nakon što se uključi ili isključi"
+
+#: src/assets/dist/settings/base.js:9
+msgid "AJAX Reload"
+msgstr "AJAX osvežavanje"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Apply filters without refreshing the page"
+msgstr "Primeni filtere bez osvežavanja stranice"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Infinity loading"
+msgstr "Beskonačno učitavanje"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Load products at the bottom of the list instead of going to a next page. Removes the pagination and adds a button to load more products at the end of the list."
+msgstr ""
+"Učitaj proizvode na dnu liste umesto prelaska na sledeću stranicu. Uklanja "
+"paginaciju i dodaje dugme za učitavanje još proizvoda na kraju liste."
+
+#: src/assets/dist/settings/base.js:9
+msgid "Loader animation"
+msgstr "Animacija učitavanja"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Add loader animation while the next page of products is loading in AJAX mode"
+msgstr ""
+"Prikaži animaciju učitavanja dok se sledeća stranica proizvoda učitava u "
+"AJAX režimu"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Mobile Filters"
+msgstr "Mobilni filteri"
+
+#: src/assets/dist/settings/base.js:9
+msgid "Move the filtrers on mobile to a fullscreen popup and add a floating button to open and close the popup"
+msgstr ""
+"Premesti filtere na mobilnom u popup preko celog ekrana i dodaj plutajuće "
+"dugme za otvaranje i zatvaranje"
