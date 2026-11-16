@@ -255,3 +255,7 @@ msgstr[1] "%d резултата"
 #: src/templates/result-count.php:38
 msgid "%1$d of %2$d results"
 msgstr "%1$d от %2$d резултата"
+
+#: src/templates/load-more-button.php:23
+msgid "Previous page"
+msgstr "Предишна страница"

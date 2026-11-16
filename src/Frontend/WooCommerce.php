@@ -4,6 +4,7 @@ namespace Filtry\Frontend;
 
 use Filtry\Admin\Settings;
 use Filtry\Enums\SettingsEnum;
+use Filtry\Utils\Pagination;
 use Filtry\Utils\Template;
 
 class WooCommerce {
@@ -21,16 +22,30 @@ class WooCommerce {
     }
 
     public function render_load_more_button() {
-        global $wp_query;
+        $current_page = Pagination::current_page();
 
         /**
-         * Don't show the load more button if there is only 1 page...
+         * A "previous page" link is only useful on the discrete /page/{n}/ archives.
+         * The cumulative ?paged={n} view already lists everything before it.
          */
-        if( $wp_query->max_num_pages <= 1 ) {
+        $prev_url = $current_page > 1 && ! Pagination::is_cumulative()
+            ? Pagination::page_url( $current_page - 1 )
+            : null;
+
+        /**
+         * Don't show the load more button on the last page
+         */
+        $has_next = $current_page < Pagination::total_pages();
+
+        if( ! $has_next && null === $prev_url ) {
             return;
         }
 
-        Template::render( 'load-more-button.php' );
+        Template::render( 'load-more-button.php', [
+            'next_page' => $has_next ? $current_page + 1 : null,
+            'next_url'  => $has_next ? Pagination::page_url( $current_page + 1 ) : null,
+            'prev_url'  => $prev_url,
+        ] );
     }
 
     public function override_result_count_template( $template, $template_name ) {

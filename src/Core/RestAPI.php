@@ -2,6 +2,7 @@
 
 namespace Filtry\Core;
 
+use Filtry\Utils\Pagination;
 use Filtry\Utils\View;
 
 class RestAPI {
@@ -145,8 +146,6 @@ class RestAPI {
      * Return woocommerce products per page
      */
     private function get_products_per_page(): int {
-        return absint(
-            apply_filters( 'loop_shop_per_page', wc_get_default_products_per_row() * wc_get_default_product_rows_per_page() )
-        );
+        return Pagination::per_page();
     }
 }

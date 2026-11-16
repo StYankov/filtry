@@ -15,9 +15,9 @@ class Hooks {
 
         add_action( 'init', [ $this, 'schedule_count_matrix_update' ] );
         
-        add_filter( 'rewrite_rules_array', [ $this, 'disable_pretty_pagination' ] );
-        add_filter( 'redirect_canonical', [ $this, 'remove_page_number_permalink_redirect'] );
+        add_action( 'init', [ $this, 'maybe_upgrade' ], 99 );
 
+        add_filter( 'redirect_canonical', [ $this, 'remove_page_number_permalink_redirect'] );
     }
 
     public function schedule_count_matrix_update() {
@@ -26,14 +26,22 @@ class Hooks {
         }
     }
 
-    public function disable_pretty_pagination( $rules ) {
-        foreach( $rules as $rule => $rewrite ) {
-            if( strpos( $rewrite, 'paged=' ) ) {
-                unset( $rules[ $rule ] );
-            }
+    /**
+     * Flush the rewrite rules once after the plugin is updated.
+     *
+     * Versions up to 0.9 removed the /page/{n}/ rewrite rules. They are
+     * needed again so that paginated archives are reachable by crawlers.
+     */
+    public function maybe_upgrade() {
+        $version = filtry()->version;
+
+        if( get_option( 'filtry_version' ) === $version ) {
+            return;
         }
-        
-        return $rules;
+
+        update_option( 'filtry_version', $version );
+
+        flush_rewrite_rules( false );
     }
 
     /**
