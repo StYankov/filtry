@@ -8,6 +8,8 @@
  * @property {string} rest_url
  * @property {boolean} is_taxonomy_page
  * @property {string} shop_page
+ * @property {string} base_url First page URL of the current archive
+ * @property {number} current_page
  * @property {string} taxonomy
  * @property {string} term_slug
  * 

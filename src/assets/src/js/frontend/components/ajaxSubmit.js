@@ -1,5 +1,6 @@
 import { getActiveFilters, createQueryString } from '../utils/filters';
 import { getShop } from '../utils/ajax';
+import { setLoadedPage } from './infinityLoad';
 
 /**
  * @param {string} queryString
@@ -12,8 +13,12 @@ export function handleAjaxReload(queryString) {
         $productsList.html(res.products);
         jQuery('.woocommerce-result-count').replaceWith(res.result_count);
         jQuery('.woocommerce-pagination').replaceWith(res.pagination);
+
+        // The list was replaced, a "previous page" link no longer applies
+        jQuery('.filtry-prev-page').remove();
+        setLoadedPage(res.current_page);
         
-        if(res.max_page === 1) {
+        if(res.max_page <= 1) {
             jQuery('.filtry-infinity-load').hide();
         } else {
             jQuery('.filtry-infinity-load').show();

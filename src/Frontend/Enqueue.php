@@ -6,6 +6,7 @@ use Filtry\Admin\Settings;
 use Filtry\Enums\DesignSettingsEnum;
 use Filtry\Enums\SettingsEnum;
 use Filtry\Filtry;
+use Filtry\Utils\Pagination;
 
 class Enqueue {
     public function __construct() {
@@ -48,6 +49,8 @@ class Enqueue {
             'rest_url'         => rest_url( 'filtry/v1/shop' ),
             'is_taxonomy_page' => $is_product_taxonomy,
             'shop_page'        => get_permalink( wc_get_page_id( 'shop' ) ),
+            'base_url'         => Pagination::base_url(),
+            'current_page'     => Pagination::current_page(),
             'taxonomy'         => $taxonomy_slug,
             'term_slug'        => is_a( $object, 'WP_Term' ) ? $object->slug : null,
             'design'           => [

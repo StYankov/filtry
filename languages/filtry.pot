@@ -318,3 +318,7 @@ msgstr ""
 #: src/assets/dist/settings/base.js:9
 msgid "Move the filtrers on mobile to a fullscreen popup and add a floating button to open and close the popup"
 msgstr ""
+
+#: src/templates/load-more-button.php:23
+msgid "Previous page"
+msgstr ""
